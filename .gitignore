@@ -1,0 +1,25 @@
+# Arquivos gerados durante a compilação
+bin/
+obj/
+
+# Configurações locais dos editores
+.vscode/
+.vs/
+
+# Bancos de dados SQLite
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Dados criados durante o uso do sistema
+data/
+backups/
+exports/
+logs/
+*.log
+
+# Configurações locais e possíveis segredos
+.env
+appsettings.Local.json
