@@ -23,3 +23,6 @@ logs/
 # Configurações locais e possíveis segredos
 .env
 appsettings.Local.json
+
+# Configurações pessoais dos projetos .NET
+*.csproj.user
