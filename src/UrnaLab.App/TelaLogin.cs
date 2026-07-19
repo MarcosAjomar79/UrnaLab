@@ -32,6 +32,10 @@ public partial class TelaLogin : Form
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information
             );
+
+            TelaPrincipal telaPrincipal = new TelaPrincipal();
+            telaPrincipal.Show();
+            this.Hide();
         }
 
         else

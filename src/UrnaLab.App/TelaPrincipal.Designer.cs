@@ -57,6 +57,7 @@
             btnAlunos.TabIndex = 1;
             btnAlunos.Text = "Cadastrar Alunos";
             btnAlunos.UseVisualStyleBackColor = true;
+            btnAlunos.Click += btnAlunos_Click;
             // 
             // btnChapas
             // 
