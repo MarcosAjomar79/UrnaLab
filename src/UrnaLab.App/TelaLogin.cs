@@ -15,14 +15,33 @@ public partial class TelaLogin : Form
         if (usuario == "" || senha == "")
         {
             MessageBox.Show(
-                "Informe o usuário e a senha.",
+                "Usuário ou senha com o campo vazio.",
                 "Atenção",
                 MessageBoxButtons.OK,
-                MessageBoxIcon.Warning
+                MessageBoxIcon.Information
             );
 
             return;
         }
-        MessageBox.Show("Tentativa de Login recebida.");
+
+        if (usuario == "admin" && senha == "123")
+        {
+            MessageBox.Show(
+                "Login realizado com sucesso!",
+                "Sucesso!",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+        }
+
+        else
+        {
+            MessageBox.Show(
+                "Usuário ou senha inválido, por favor digite novamente.",
+                "Erro de Login",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+                );
+        }
     }
 }
