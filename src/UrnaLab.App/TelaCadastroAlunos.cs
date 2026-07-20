@@ -13,6 +13,7 @@ namespace UrnaLab.App
         public TelaCadastroAlunos()
         {
             InitializeComponent();
+            cboStatus.SelectedIndex = 0;
         }
 
         private void cboStatus_SelectedIndexChanged(object sender, EventArgs e)
