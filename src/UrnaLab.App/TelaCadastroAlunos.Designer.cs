@@ -32,7 +32,7 @@
             lblRa = new Label();
             txtRa = new TextBox();
             lblNome = new Label();
-            textBox1 = new TextBox();
+            txtNome = new TextBox();
             lblTurma = new Label();
             txtTurma = new TextBox();
             lblStatus = new Label();
@@ -79,13 +79,13 @@
             lblNome.TabIndex = 3;
             lblNome.Text = "Nome Completo:";
             // 
-            // textBox1
+            // txtNome
             // 
-            textBox1.Location = new Point(360, 176);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Digite o seu nome completo";
-            textBox1.Size = new Size(360, 23);
-            textBox1.TabIndex = 4;
+            txtNome.Location = new Point(360, 176);
+            txtNome.Name = "txtNome";
+            txtNome.PlaceholderText = "Digite o seu nome completo";
+            txtNome.Size = new Size(360, 23);
+            txtNome.TabIndex = 4;
             // 
             // lblTurma
             // 
@@ -132,6 +132,7 @@
             btnSalvar.TabIndex = 9;
             btnSalvar.Text = "Salvar";
             btnSalvar.UseVisualStyleBackColor = true;
+            btnSalvar.Click += btnSalvar_Click;
             // 
             // btnLimpar
             // 
@@ -141,6 +142,7 @@
             btnLimpar.TabIndex = 10;
             btnLimpar.Text = "Limpar";
             btnLimpar.UseVisualStyleBackColor = true;
+            btnLimpar.Click += btnLimpar_Click;
             // 
             // btnVoltar
             // 
@@ -164,7 +166,7 @@
             Controls.Add(lblStatus);
             Controls.Add(txtTurma);
             Controls.Add(lblTurma);
-            Controls.Add(textBox1);
+            Controls.Add(txtNome);
             Controls.Add(lblNome);
             Controls.Add(txtRa);
             Controls.Add(lblRa);
@@ -182,7 +184,7 @@
         private Label lblRa;
         private TextBox txtRa;
         private Label lblNome;
-        private TextBox textBox1;
+        private TextBox txtNome;
         private Label lblTurma;
         private TextBox txtTurma;
         private Label lblStatus;

@@ -24,5 +24,43 @@ namespace UrnaLab.App
         {
             this.Close();
         }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            txtRa.Text = "";
+            txtNome.Text = "";
+            txtTurma.Text = "";
+            cboStatus.SelectedIndex = -1;
+
+            txtRa.Focus();
+
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            string ra = txtRa.Text.Trim();
+            string nome = txtNome.Text.Trim();
+            string turma = txtTurma.Text.Trim();
+
+            if (ra == "" || nome == "" || turma == "" || cboStatus.SelectedIndex == -1)
+            {
+                MessageBox.Show(
+                    "Preencha todos os campos vazios.",
+                    "Atenção",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                    );
+
+                return;
+
+            }
+
+            MessageBox.Show(
+                "Aluno Validado com Sucesso!",
+                "Sucesso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+                );
+        }
     }
 }
