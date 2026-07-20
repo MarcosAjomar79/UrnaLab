@@ -22,7 +22,8 @@ namespace UrnaLab.App
 
         private void btnAlunos_Click(object sender, EventArgs e)
         {
-
+            TelaCadastroAlunos telaCadastroAlunos = new TelaCadastroAlunos();
+            telaCadastroAlunos.ShowDialog();
         }
     }
 }
