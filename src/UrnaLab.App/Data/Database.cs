@@ -35,4 +35,26 @@ public static class Database
         comando.CommandText = sql;
         comando.ExecuteNonQuery();
     }
+
+    public static void InserirAluno(string ra, string nome, string turma, string status)
+    {
+        using SqliteConnection conexao = CriarConexao();
+
+        conexao.Open();
+
+        string sql = @"
+            INSERT INTO Alunos (Ra, Nome, Turma, Status)
+            VALUES (@ra, @nome, @turma, @status);
+        ";
+
+        using SqliteCommand comando = conexao.CreateCommand();
+
+        comando.CommandText = sql;
+        comando.Parameters.AddWithValue("@ra", ra);
+        comando.Parameters.AddWithValue("@nome", nome);
+        comando.Parameters.AddWithValue("@turma", turma);
+        comando.Parameters.AddWithValue("@status", status);
+
+        comando.ExecuteNonQuery();
+    }
 }

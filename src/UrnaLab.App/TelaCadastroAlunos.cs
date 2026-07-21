@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using UrnaLab.App.Data;
 
 namespace UrnaLab.App
 {
@@ -56,12 +57,30 @@ namespace UrnaLab.App
 
             }
 
-            MessageBox.Show(
-                "Aluno Validado com Sucesso!",
-                "Sucesso",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information
+            string status = cboStatus.Text.Trim();
+
+            try
+            {
+                Database.InserirAluno(ra, nome, turma, status);
+
+                MessageBox.Show(
+                    "Aluno Validado com Sucesso!",
+                    "Sucesso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
+
+                btnLimpar.PerformClick();
+            }
+            catch (Microsoft.Data.Sqlite.SqliteException)
+            {
+                MessageBox.Show(
+                    "Já existe um aluno cadastrado com essas informações.",
+                    "RA Duplicado",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
                 );
+            }
         }
     }
 }
