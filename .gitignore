@@ -14,7 +14,7 @@ obj/
 *.sqlite3
 
 # Dados criados durante o uso do sistema
-data/
+/data/
 backups/
 exports/
 logs/
