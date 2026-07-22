@@ -40,6 +40,8 @@
             btnSalvar = new Button();
             btnLimpar = new Button();
             btnVoltar = new Button();
+            dgvAlunos = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dgvAlunos).BeginInit();
             SuspendLayout();
             // 
             // lblTitulo
@@ -47,7 +49,7 @@
             lblTitulo.Anchor = AnchorStyles.Top;
             lblTitulo.AutoSize = true;
             lblTitulo.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            lblTitulo.Location = new Point(320, 40);
+            lblTitulo.Location = new Point(394, 40);
             lblTitulo.Name = "lblTitulo";
             lblTitulo.Size = new Size(266, 37);
             lblTitulo.TabIndex = 0;
@@ -126,7 +128,7 @@
             // 
             // btnSalvar
             // 
-            btnSalvar.Location = new Point(300, 430);
+            btnSalvar.Location = new Point(280, 343);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(120, 40);
             btnSalvar.TabIndex = 9;
@@ -136,7 +138,7 @@
             // 
             // btnLimpar
             // 
-            btnLimpar.Location = new Point(440, 430);
+            btnLimpar.Location = new Point(420, 343);
             btnLimpar.Name = "btnLimpar";
             btnLimpar.Size = new Size(120, 40);
             btnLimpar.TabIndex = 10;
@@ -146,7 +148,7 @@
             // 
             // btnVoltar
             // 
-            btnVoltar.Location = new Point(580, 430);
+            btnVoltar.Location = new Point(546, 343);
             btnVoltar.Name = "btnVoltar";
             btnVoltar.Size = new Size(120, 40);
             btnVoltar.TabIndex = 11;
@@ -154,11 +156,26 @@
             btnVoltar.UseVisualStyleBackColor = true;
             btnVoltar.Click += btnVoltar_Click;
             // 
+            // dgvAlunos
+            // 
+            dgvAlunos.AllowUserToAddRows = false;
+            dgvAlunos.AllowUserToDeleteRows = false;
+            dgvAlunos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvAlunos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvAlunos.Location = new Point(119, 420);
+            dgvAlunos.Name = "dgvAlunos";
+            dgvAlunos.ReadOnly = true;
+            dgvAlunos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvAlunos.Size = new Size(740, 180);
+            dgvAlunos.TabIndex = 12;
+            dgvAlunos.CellContentClick += dgvAlunos_CellContentClick;
+            // 
             // TelaCadastroAlunos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(884, 561);
+            ClientSize = new Size(1033, 662);
+            Controls.Add(dgvAlunos);
             Controls.Add(btnVoltar);
             Controls.Add(btnLimpar);
             Controls.Add(btnSalvar);
@@ -174,6 +191,7 @@
             Name = "TelaCadastroAlunos";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UrnaLab - Cadastro de Alunos";
+            ((System.ComponentModel.ISupportInitialize)dgvAlunos).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -192,5 +210,6 @@
         private Button btnSalvar;
         private Button btnLimpar;
         private Button btnVoltar;
+        private DataGridView dgvAlunos;
     }
 }

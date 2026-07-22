@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.Sqlite;
+using System.Data;
 
 namespace UrnaLab.App.Data;
 
@@ -56,5 +57,29 @@ public static class Database
         comando.Parameters.AddWithValue("@status", status);
 
         comando.ExecuteNonQuery();
+    }
+
+    public static DataTable ListarAlunos()
+    {
+        using SqliteConnection conexao = CriarConexao();
+
+        conexao.Open();
+
+        string sql = @"
+            SELECT Id, Ra, Nome, Turma, Status
+            FROM Alunos
+            ORDER BY Nome;
+        ";
+
+        using SqliteCommand comando = conexao.CreateCommand();
+
+        comando.CommandText = sql;
+
+        using SqliteDataReader leitor = comando.ExecuteReader();
+
+        DataTable tabela = new DataTable();
+        tabela.Load(leitor);
+
+        return tabela;
     }
 }

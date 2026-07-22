@@ -15,6 +15,22 @@ namespace UrnaLab.App
         {
             InitializeComponent();
             cboStatus.SelectedIndex = 0;
+            CarregarAlunos();
+        }
+
+        private void CarregarAlunos()
+        {
+            dgvAlunos.DataSource = Database.ListarAlunos();
+
+            if (dgvAlunos.Columns.Contains("Id"))
+            {
+                dgvAlunos.Columns["Id"].Visible = false;
+            }
+
+            if (dgvAlunos.Columns.Contains("Ra"))
+            {
+                dgvAlunos.Columns["Ra"].HeaderText = "RA/Matrícula";
+            }
         }
 
         private void cboStatus_SelectedIndexChanged(object sender, EventArgs e)
@@ -71,6 +87,7 @@ namespace UrnaLab.App
                     );
 
                 btnLimpar.PerformClick();
+                CarregarAlunos();
             }
             catch (Microsoft.Data.Sqlite.SqliteException)
             {
@@ -81,6 +98,11 @@ namespace UrnaLab.App
                     MessageBoxIcon.Warning
                 );
             }
+        }
+
+        private void dgvAlunos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
