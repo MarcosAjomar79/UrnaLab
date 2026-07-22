@@ -34,6 +34,8 @@ partial class TelaLogin
         lblSenha = new Label();
         txtSenha = new TextBox();
         btnEntrar = new Button();
+        button1 = new Button();
+        btnLimpar = new Button();
         SuspendLayout();
         // 
         // lblTitulo
@@ -97,19 +99,42 @@ partial class TelaLogin
         // 
         btnEntrar.Anchor = AnchorStyles.Top;
         btnEntrar.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-        btnEntrar.Location = new Point(340, 220);
+        btnEntrar.Location = new Point(271, 220);
         btnEntrar.Name = "btnEntrar";
         btnEntrar.Size = new Size(120, 40);
         btnEntrar.TabIndex = 2;
         btnEntrar.Text = "Entrar";
         btnEntrar.UseVisualStyleBackColor = true;
-        btnEntrar.Click += this.btnEntrar_Click;
+        btnEntrar.Click += btnEntrar_Click;
+        // 
+        // button1
+        // 
+        button1.Location = new Point(463, 275);
+        button1.Name = "button1";
+        button1.Size = new Size(8, 8);
+        button1.TabIndex = 4;
+        button1.Text = "button1";
+        button1.UseVisualStyleBackColor = true;
+        // 
+        // btnLimpar
+        // 
+        btnLimpar.Anchor = AnchorStyles.Top;
+        btnLimpar.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+        btnLimpar.Location = new Point(450, 220);
+        btnLimpar.Name = "btnLimpar";
+        btnLimpar.Size = new Size(120, 40);
+        btnLimpar.TabIndex = 5;
+        btnLimpar.Text = "Limpar";
+        btnLimpar.UseVisualStyleBackColor = true;
+        btnLimpar.Click += btnLimpar_Click;
         // 
         // TelaLogin
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(800, 450);
+        Controls.Add(btnLimpar);
+        Controls.Add(button1);
         Controls.Add(btnEntrar);
         Controls.Add(txtSenha);
         Controls.Add(lblSenha);
@@ -131,4 +156,6 @@ partial class TelaLogin
     private Label lblSenha;
     private TextBox txtSenha;
     private Button btnEntrar;
+    private Button button1;
+    private Button btnLimpar;
 }

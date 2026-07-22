@@ -48,4 +48,10 @@ public partial class TelaLogin : Form
                 );
         }
     }
+
+    private void btnLimpar_Click(object sender, EventArgs e)
+    {
+        txtUsuario.Text = "";
+        txtSenha.Text = "";
+    }
 }
