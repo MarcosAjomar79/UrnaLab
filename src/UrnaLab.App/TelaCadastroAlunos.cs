@@ -48,7 +48,7 @@ namespace UrnaLab.App
             txtRa.Text = "";
             txtNome.Text = "";
             txtTurma.Text = "";
-            cboStatus.SelectedIndex = -1;
+            cboStatus.SelectedIndex = 0;
 
             txtRa.Focus();
 
