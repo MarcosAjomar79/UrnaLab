@@ -68,6 +68,7 @@
             btnChapas.TabIndex = 2;
             btnChapas.Text = "Cadastrar Chapas";
             btnChapas.UseVisualStyleBackColor = true;
+            btnChapas.Click += btnChapas_Click;
             // 
             // btnVotacao
             // 
