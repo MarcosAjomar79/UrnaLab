@@ -79,6 +79,7 @@
             btnVotacao.TabIndex = 3;
             btnVotacao.Text = "Liberar Votação";
             btnVotacao.UseVisualStyleBackColor = true;
+            btnVotacao.Click += btnVotacao_Click;
             // 
             // btnRelatorios
             // 

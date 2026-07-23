@@ -31,5 +31,12 @@ namespace UrnaLab.App
             TelaCadastroChapas telaCadastroChapas = new TelaCadastroChapas();
             telaCadastroChapas.ShowDialog();
         }
+
+        private void btnVotacao_Click(object sender, EventArgs e)
+        {
+            TelaLiberarVotacao telaLiberarVotacao = new TelaLiberarVotacao();
+            telaLiberarVotacao.ShowDialog();
+
+        }
     }
 }
