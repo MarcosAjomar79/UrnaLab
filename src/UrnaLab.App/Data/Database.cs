@@ -29,6 +29,13 @@ public static class Database
                 Turma TEXT NOT NULL,
                 Status TEXT NOT NULL
             );
+
+           CREATE TABLE IF NOT EXISTS Chapas (
+                Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                Numero TEXT NOT NULL UNIQUE,
+                Nome TEXT NOT NULL,
+                Status TEXT NOT NULL
+            );
         ";
 
         using SqliteCommand comando = conexao.CreateCommand();
@@ -81,5 +88,51 @@ public static class Database
         tabela.Load(leitor);
 
         return tabela;
+    }
+
+    public static void InserirChapa(string numero, string nome, string status)
+    {
+        using SqliteConnection conexao = CriarConexao();
+
+        conexao.Open();
+
+        string sql = @"
+            INSERT INTO Chapas (Numero, Nome, Status)
+            VALUES (@numero, @nome, @status);
+        ";
+
+        using SqliteCommand comando = conexao.CreateCommand();
+
+        comando.CommandText = sql;
+        comando.Parameters.AddWithValue("numero", numero);
+        comando.Parameters.AddWithValue("nome", nome);
+        comando.Parameters.AddWithValue("status", status);
+
+        comando.ExecuteNonQuery();
+
+    }
+
+    public static DataTable ListarChapas()
+    {
+        using SqliteConnection conexao = CriarConexao();
+        conexao.Open();
+
+        string sql = @"
+            SELECT Id, Numero, Nome, Status
+            FROM Chapas
+            ORDER BY Nome
+        ";
+
+        using SqliteCommand comando = conexao.CreateCommand();
+
+        comando.CommandText = sql;
+
+        using SqliteDataReader leitor = comando.ExecuteReader();
+
+        DataTable tabela = new DataTable();
+        tabela.Load(leitor);
+
+        return tabela;
+
     }
 }
