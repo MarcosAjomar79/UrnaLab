@@ -5,14 +5,31 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using UrnaLab.App.Data;
 
 namespace UrnaLab.App
 {
     public partial class TelaLiberarVotacao : Form
     {
+
+        private int AlunoIdSelecionado = 0;
+
+        private void LimparDadosAluno()
+        {
+            AlunoIdSelecionado = 0;
+
+            lblNomeAluno.Text = "Nenhum Aluno Pesquisado";
+            lblTurmaAluno.Text = "-";
+            lblStatusAluno.Text = "-";
+            lblSituacaoVoto.Text = "-";
+
+            btnLiberar.Enabled = false;
+        }
+
         public TelaLiberarVotacao()
         {
             InitializeComponent();
+            btnLiberar.Enabled = false;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -27,25 +44,72 @@ namespace UrnaLab.App
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-            txtRa.Text = "";
+            string ra = txtRa.Text.Trim();
 
-            txtRa.Focus();
+            if (txtRa.Text == "")
+            {
+                MessageBox.Show(
+                    "Não foi possível limpar o Campo, pois ele já está vazio.",
+                    "Campo Já Vazio",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation
+                );
+            }
+            else
+            {
+                txtRa.Clear();
+                LimparDadosAluno();
+                txtRa.Focus();
+            }
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             string ra = txtRa.Text.Trim();
 
-            if (ra == "")
+            DataTable resultado = Database.BuscarAlunoPorRa(ra);
+
+            if (resultado.Rows.Count == 0)
             {
                 MessageBox.Show(
-                    "É Obrigatório preencher este campo para busca do aluno.",
-                    "Campo Vazio",
+                    "Nenhum Aluno foi encontrado com esse RA/Matrícula.",
+                    "Aluno Não Encontrado",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                 );
 
-                return;
+                return; 
+            }
+
+            DataRow aluno = resultado.Rows[0];
+
+            AlunoIdSelecionado = Convert.ToInt32(aluno["id"]);
+
+            string nome = aluno["Nome"].ToString() ?? "";
+            string turma = aluno["Turma"].ToString() ?? "";
+            string status = aluno["status"].ToString() ?? "";
+            int jaVotou = Convert.ToInt32(aluno["JaVotou"]);
+
+            lblNomeAluno.Text = nome;
+            lblTurmaAluno.Text = turma;
+            lblStatusAluno.Text = status;
+
+            if (jaVotou == 1)
+            {
+                lblSituacaoVoto.Text = "Aluno já Votou";
+                btnLiberar.Enabled = false;
+            }
+            else
+            {
+                lblSituacaoVoto.Text = "O aluno ainda não votou";
+
+                bool alunoAtivo = string.Equals(
+                    status,
+                    "Ativo",
+                    StringComparison.OrdinalIgnoreCase
+                );
+
+                btnLiberar.Enabled = alunoAtivo;
             }
         }
 

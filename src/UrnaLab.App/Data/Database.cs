@@ -27,7 +27,8 @@ public static class Database
                 Ra TEXT NOT NULL UNIQUE,
                 Nome TEXT NOT NULL,
                 Turma TEXT NOT NULL,
-                Status TEXT NOT NULL
+                Status TEXT NOT NULL,
+                JaVotou INTEGER NOT NULL DEFAULT 0
             );
 
            CREATE TABLE IF NOT EXISTS Chapas (
@@ -42,6 +43,36 @@ public static class Database
 
         comando.CommandText = sql;
         comando.ExecuteNonQuery();
+
+        bool colunaJaVotouExiste = false;
+
+        using (SqliteCommand verificarcoluna = conexao.CreateCommand())
+        {
+            verificarcoluna.CommandText = "PRAGMA table_info (Alunos);";
+
+            using SqliteDataReader leitor = verificarcoluna.ExecuteReader();
+
+            while (leitor.Read())
+            {
+                string NomeColuna = leitor.GetString(1);
+
+                if (NomeColuna == "JaVotou")
+                {
+                    colunaJaVotouExiste = true;
+                    break;
+                }
+            }
+        }
+
+        if (!colunaJaVotouExiste)
+        {
+            using SqliteCommand adicionarColuna = conexao.CreateCommand();
+
+            adicionarColuna.CommandText =
+                "ALTER TABLE Alunos ADD COLUMN JaVotou INTEGER NOT NULL DEFAULT 0;";
+
+            adicionarColuna.ExecuteNonQuery();
+        }
     }
 
     public static void InserirAluno(string ra, string nome, string turma, string status)
@@ -110,6 +141,32 @@ public static class Database
 
         comando.ExecuteNonQuery();
 
+    }
+
+    public static DataTable BuscarAlunoPorRa(string ra)
+    {
+        using SqliteConnection conexao = CriarConexao();
+
+        conexao.Open();
+
+        string sql = @"
+            SELECT Id, Nome, Turma, Status, JaVotou
+            FROM Alunos
+            WHERE Ra = @ra
+            LIMIT 1
+        ";
+
+        using SqliteCommand comando = conexao.CreateCommand();
+
+        comando.CommandText = sql;
+        comando.Parameters.AddWithValue("@ra", ra);
+
+        using SqliteDataReader leitor = comando.ExecuteReader();
+
+        DataTable tabela = new DataTable();
+        tabela.Load(leitor);
+
+        return tabela;
     }
 
     public static DataTable ListarChapas()

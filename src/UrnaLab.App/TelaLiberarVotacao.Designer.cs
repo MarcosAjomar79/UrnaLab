@@ -33,9 +33,9 @@
             txtRa = new TextBox();
             btnBuscar = new Button();
             grpAluno = new GroupBox();
-            label2 = new Label();
+            lblSituacaoVoto = new Label();
             lblVotoDescricao = new Label();
-            label1 = new Label();
+            lblStatusAluno = new Label();
             lblStatusDescricao = new Label();
             lblTurmaAluno = new Label();
             lblTurmaDescricao = new Label();
@@ -89,9 +89,9 @@
             // 
             // grpAluno
             // 
-            grpAluno.Controls.Add(label2);
+            grpAluno.Controls.Add(lblSituacaoVoto);
             grpAluno.Controls.Add(lblVotoDescricao);
-            grpAluno.Controls.Add(label1);
+            grpAluno.Controls.Add(lblStatusAluno);
             grpAluno.Controls.Add(lblStatusDescricao);
             grpAluno.Controls.Add(lblTurmaAluno);
             grpAluno.Controls.Add(lblTurmaDescricao);
@@ -104,15 +104,15 @@
             grpAluno.TabStop = false;
             grpAluno.Text = "Dados do Aluno";
             // 
-            // label2
+            // lblSituacaoVoto
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 10F);
-            label2.Location = new Point(160, 130);
-            label2.Name = "label2";
-            label2.Size = new Size(15, 19);
-            label2.TabIndex = 7;
-            label2.Text = "-";
+            lblSituacaoVoto.AutoSize = true;
+            lblSituacaoVoto.Font = new Font("Segoe UI", 10F);
+            lblSituacaoVoto.Location = new Point(160, 130);
+            lblSituacaoVoto.Name = "lblSituacaoVoto";
+            lblSituacaoVoto.Size = new Size(15, 19);
+            lblSituacaoVoto.TabIndex = 7;
+            lblSituacaoVoto.Text = "-";
             // 
             // lblVotoDescricao
             // 
@@ -122,17 +122,17 @@
             lblVotoDescricao.Name = "lblVotoDescricao";
             lblVotoDescricao.Size = new Size(116, 19);
             lblVotoDescricao.TabIndex = 6;
-            lblVotoDescricao.Text = "Situacao do Voto:";
+            lblVotoDescricao.Text = "Situação do Voto:";
             // 
-            // label1
+            // lblStatusAluno
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 10F);
-            label1.Location = new Point(430, 85);
-            label1.Name = "label1";
-            label1.Size = new Size(15, 19);
-            label1.TabIndex = 5;
-            label1.Text = "-";
+            lblStatusAluno.AutoSize = true;
+            lblStatusAluno.Font = new Font("Segoe UI", 10F);
+            lblStatusAluno.Location = new Point(430, 85);
+            lblStatusAluno.Name = "lblStatusAluno";
+            lblStatusAluno.Size = new Size(15, 19);
+            lblStatusAluno.TabIndex = 5;
+            lblStatusAluno.Text = "-";
             // 
             // lblStatusDescricao
             // 
@@ -217,6 +217,7 @@
             // 
             // TelaLiberarVotacao
             // 
+            AcceptButton = btnBuscar;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(884, 561);
@@ -253,9 +254,9 @@
         private Label lblNomeAluno;
         private Label lblNomeDescricao;
         private Label lblVotoDescricao;
-        private Label label1;
+        private Label lblStatusAluno;
         private Label lblStatusDescricao;
         private Label lblTurmaAluno;
-        private Label label2;
+        private Label lblSituacaoVoto;
     }
 }
