@@ -40,11 +40,23 @@ namespace UrnaLab.App
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-            txtNumero.Text = "";
-            txtNome.Text = "";
-            cboStatus.SelectedIndex = 0;
+            if (txtNumero.Text == "" && txtNome.Text == "" && cboStatus.SelectedIndex == 0)
+            {
+                MessageBox.Show(
+                    "Não foi possível limpar os campos, pois eles já estão vazios.",
+                    "Campo Já Vazio",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+            }
+            else
+            {
+                txtNumero.Text = "";
+                txtNome.Text = "";
+                cboStatus.SelectedIndex = 0;
 
-            txtNumero.Focus();
+                txtNumero.Focus();
+            }
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
