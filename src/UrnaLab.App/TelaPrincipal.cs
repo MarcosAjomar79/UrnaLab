@@ -38,5 +38,10 @@ namespace UrnaLab.App
             telaLiberarVotacao.ShowDialog();
 
         }
+
+        private void TelaPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

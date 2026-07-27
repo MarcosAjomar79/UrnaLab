@@ -172,8 +172,10 @@
             // 
             // TelaCadastroAlunos
             // 
+            AcceptButton = btnSalvar;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnVoltar;
             ClientSize = new Size(1033, 662);
             Controls.Add(dgvAlunos);
             Controls.Add(btnVoltar);

@@ -151,8 +151,10 @@
             // 
             // TelaCadastroChapas
             // 
+            AcceptButton = btnSalvar;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnVoltar;
             ClientSize = new Size(961, 561);
             Controls.Add(dgvChapas);
             Controls.Add(btnVoltar);

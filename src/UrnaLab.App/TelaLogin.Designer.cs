@@ -34,7 +34,6 @@ partial class TelaLogin
         lblSenha = new Label();
         txtSenha = new TextBox();
         btnEntrar = new Button();
-        button1 = new Button();
         btnLimpar = new Button();
         SuspendLayout();
         // 
@@ -107,15 +106,6 @@ partial class TelaLogin
         btnEntrar.UseVisualStyleBackColor = true;
         btnEntrar.Click += btnEntrar_Click;
         // 
-        // button1
-        // 
-        button1.Location = new Point(463, 275);
-        button1.Name = "button1";
-        button1.Size = new Size(8, 8);
-        button1.TabIndex = 4;
-        button1.Text = "button1";
-        button1.UseVisualStyleBackColor = true;
-        // 
         // btnLimpar
         // 
         btnLimpar.Anchor = AnchorStyles.Top;
@@ -130,11 +120,12 @@ partial class TelaLogin
         // 
         // TelaLogin
         // 
+        AcceptButton = btnEntrar;
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
+        CancelButton = btnLimpar;
         ClientSize = new Size(800, 450);
         Controls.Add(btnLimpar);
-        Controls.Add(button1);
         Controls.Add(btnEntrar);
         Controls.Add(txtSenha);
         Controls.Add(lblSenha);
@@ -156,6 +147,5 @@ partial class TelaLogin
     private Label lblSenha;
     private TextBox txtSenha;
     private Button btnEntrar;
-    private Button button1;
     private Button btnLimpar;
 }

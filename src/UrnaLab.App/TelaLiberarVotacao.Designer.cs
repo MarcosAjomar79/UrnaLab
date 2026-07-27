@@ -220,6 +220,7 @@
             AcceptButton = btnBuscar;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnVoltar;
             ClientSize = new Size(884, 561);
             Controls.Add(btnVoltar);
             Controls.Add(btnLimpar);

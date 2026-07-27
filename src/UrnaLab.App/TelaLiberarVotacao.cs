@@ -115,7 +115,32 @@ namespace UrnaLab.App
 
         private void btnLiberar_Click(object sender, EventArgs e)
         {
-            
+            if(AlunoIdSelecionado == 0)
+            {
+                MessageBox.Show(
+                    "Pesquise e selecione um aluno antes de liberar a votação.",
+                    "Aluno Não Selecionado",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                return;
+
+            }
+
+            string ra = txtRa.Text.Trim();
+            string nome = lblNomeAluno.Text.Trim();
+
+            TelaVotacao telaVotacao = new TelaVotacao(
+                AlunoIdSelecionado,
+                ra,
+                nome
+            );
+
+            telaVotacao.ShowDialog();
+            LimparDadosAluno();
+            txtRa.Focus();
+
         }
     }
 }

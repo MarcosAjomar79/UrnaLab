@@ -37,11 +37,21 @@ public static class Database
                 Nome TEXT NOT NULL,
                 Status TEXT NOT NULL
             );
+
+            CREATE TABLE IF NOT EXISTS Votos (
+                Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                AlunoId INTEGER NOT NULL UNIQUE,
+                ChapaId INTEGER NOT NULL,
+                DataHora TEXT NOT NULL,
+                FOREIGN KEY (AlunoId) REFERENCES Alunos(Id),
+                FOREIGN KEY (ChapaId) REFERENCES Chapas(Id)
+            );
         ";
 
         using SqliteCommand comando = conexao.CreateCommand();
 
         comando.CommandText = sql;
+
         comando.ExecuteNonQuery();
 
         bool colunaJaVotouExiste = false;
@@ -191,5 +201,30 @@ public static class Database
 
         return tabela;
 
+    }
+
+    public static DataTable ListarChapasAtivas()
+    {
+        using SqliteConnection conexao = CriarConexao();
+
+        conexao.Open();
+
+        string sql = @"
+            SELECT Id, Numero, Nome
+            FROM Chapas
+            WHERE LOWER(TRIM(Status)) IN ('ativo', 'ativa')
+            ORDER BY Numero
+        ";
+
+        using SqliteCommand comando = conexao.CreateCommand();
+        comando.CommandText = sql;
+        
+
+        using SqliteDataReader leitor = comando.ExecuteReader();
+
+        DataTable tabela = new DataTable();
+        tabela.Load(leitor);
+
+        return tabela;
     }
 }

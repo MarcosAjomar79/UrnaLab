@@ -116,6 +116,7 @@
             Name = "TelaPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UrnaLab - Menu Principal";
+            Load += TelaPrincipal_Load;
             ResumeLayout(false);
             PerformLayout();
         }
