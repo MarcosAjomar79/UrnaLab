@@ -54,6 +54,48 @@ public static class Database
 
         comando.ExecuteNonQuery();
 
+        bool colunaAlunoIdExiste = false;
+
+        using (SqliteCommand verificarVotos = conexao.CreateCommand())
+        {
+            verificarVotos.CommandText = "PRAGMA table_info (Votos);";
+
+            using SqliteDataReader leitorVotos = verificarVotos.ExecuteReader();
+
+            while (leitorVotos.Read())
+            {
+
+                string nomeColuna = leitorVotos.GetString(1);
+
+                if (nomeColuna == "AlunoId")
+                {
+                    colunaAlunoIdExiste = true;
+                    break;
+                }
+            }
+        }
+
+        if (!colunaAlunoIdExiste)
+        {
+            using SqliteCommand corrigirVotos = conexao.CreateCommand();
+            {
+                corrigirVotos.CommandText = @"
+                        DROP TABLE IF EXISTS Votos;
+
+                        CREATE TABLE Votos (
+                            Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            AlunoId INTEGER NOT NULL UNIQUE,
+                            ChapaId INTEGER NOT NULL,
+                            DataHora TEXT NOT NULL
+                            FOREIGN KEY (AlunoId) REFERENCES Alunos(Id),
+                            FOREIGN KEY (ChapaId) REFERENCES Chapas(Id)
+                        );
+                    ";
+
+                corrigirVotos.ExecuteNonQuery();
+            }
+        }
+        
         bool colunaJaVotouExiste = false;
 
         using (SqliteCommand verificarcoluna = conexao.CreateCommand())
@@ -226,5 +268,146 @@ public static class Database
         tabela.Load(leitor);
 
         return tabela;
+    }
+
+    public static void RegistrarVoto(int alunoId, int chapaId)
+    {
+        using SqliteConnection conexao = CriarConexao();
+        conexao.Open();
+
+        using SqliteTransaction transacao = conexao.BeginTransaction();
+
+        try
+        {
+            using (SqliteCommand verificarAluno = conexao.CreateCommand())
+            {
+                verificarAluno.Transaction = transacao;
+
+                verificarAluno.CommandText = @"
+                SELECT Status, JaVotou
+                FROM Alunos
+                WHERE Id = @AlunoId
+                LIMIT 1
+            ";
+
+                verificarAluno.Parameters.AddWithValue(
+                    "@AlunoId",
+                    alunoId
+                );
+
+                using SqliteDataReader leitor = verificarAluno.ExecuteReader();
+
+                if (!leitor.Read())
+                {
+                    throw new InvalidOperationException(
+                        "Aluno Não Encontrado"
+                        );
+                }
+
+                string statusAluno = leitor.GetString(0);
+                long jaVotou = leitor.GetInt64(1);
+
+                if (!string.Equals(
+                    statusAluno.Trim(),
+                    "Ativo",
+                    StringComparison.OrdinalIgnoreCase))
+                {
+                    throw new InvalidOperationException(
+                        "O Aluno está inativo"
+                        );
+                }
+
+                if (jaVotou == 1)
+                {
+                    throw new InvalidOperationException(
+                        "O aluno já votou uma vez."
+                        );
+                }
+            }
+
+            using (SqliteCommand verificarChapa = conexao.CreateCommand())
+            {
+                verificarChapa.Transaction = transacao;
+
+                verificarChapa.CommandText = @"
+                SELECT COUNT(*)
+                FROM Chapas
+                WHERE Id = @ChapaId
+                  AND LOWER (TRIM(Status))
+                      IN (('ativo'), ('ativa'));
+            ";
+
+                verificarChapa.Parameters.AddWithValue(
+                    "@ChapaId",
+                    chapaId
+                );
+
+                long quantidade =
+                    (long)verificarChapa.ExecuteScalar()!;
+
+                if (quantidade == 0)
+                {
+                    throw new InvalidOperationException(
+                        "a chapa selecionada não está ativa"
+                        );
+                }
+            }
+
+            using (SqliteCommand inserirVoto = conexao.CreateCommand())
+            {
+                inserirVoto.Transaction = transacao;
+
+                inserirVoto.CommandText = @"
+                INSERT INTO Votos(
+                    AlunoId,
+                    ChapaId,
+                    DataHora
+                )
+                VALUES (
+                    @AlunoId,
+                    @ChapaId,
+                    @DataHora
+                );
+            ";
+
+                inserirVoto.Parameters.AddWithValue(
+                    "@AlunoId",
+                    alunoId
+                );
+                inserirVoto.Parameters.AddWithValue(
+                    "@ChapaId",
+                    chapaId
+                );
+                inserirVoto.Parameters.AddWithValue(
+                    "@DataHora",
+                    DateTime.Now.ToString("yyyy-mm-dd HH:mm:ss")
+                );
+
+                inserirVoto.ExecuteNonQuery();
+            }
+
+            using (SqliteCommand atualizarAluno = conexao.CreateCommand())
+            {
+                atualizarAluno.CommandText = @"
+                UPDATE Alunos
+                SET JaVotou = 1
+                WHERE Id = @AlunoId
+                    AND JaVotou = 0;
+            ";
+
+                atualizarAluno.Parameters.AddWithValue(
+                    "@AlunoId",
+                    alunoId
+                );
+
+                atualizarAluno.ExecuteNonQuery();
+            }
+            transacao.Commit();
+        }
+        catch
+        {
+            transacao.Rollback();
+            throw;
+        }
     }
 }

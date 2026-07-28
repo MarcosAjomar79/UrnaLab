@@ -68,7 +68,74 @@ namespace UrnaLab.App
 
         private void btnConfirmarVoto_Click(object sender, EventArgs e)
         { 
+            if (dgvChapas.SelectedRows.Count == 0)
+            {
+                MessageBox.Show(
+                    "Selecione uma chapa antes de confirmar o voto.",
+                    "Chapa Não Selecionada",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation
+                );
 
+                return;
+
+            }
+            DataGridViewRow linhaSelecionada = dgvChapas.SelectedRows[0];
+
+            int chapaId = Convert.ToInt32(
+                linhaSelecionada.Cells["Id"].Value
+            );
+
+            string numeroChapa = linhaSelecionada.Cells["Numero"].Value?.ToString() ?? "";
+            string nomeChapa = linhaSelecionada.Cells["Nome"].Value?.ToString() ?? "";
+
+            DialogResult confirmacao = MessageBox.Show(
+                $"Confirmar o voto na chapa {numeroChapa} - {nomeChapa}?\n\n" +
+                "Esta votação é nominal e o aluno será registrado junto com o voto",
+                "Confirmar Voto",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (confirmacao != DialogResult.Yes)
+            {
+                return;
+            }
+            try
+            {
+                Database.RegistrarVoto(
+                    alunoId,
+                    chapaId
+                );
+
+                MessageBox.Show(
+                    "voto registrado com sucesso!",
+                    "Sucesso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Voto não registrado",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                    );
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(
+                    $"Não foi possível registrar o voto \n\n Detalhes: {ex.Message}",
+                    "Erro na Votação",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
         }
     }
 }
