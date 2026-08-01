@@ -295,13 +295,18 @@ namespace UrnaLab.App
 
             indiceVotoImpressao = 0;
 
-            dlgPreVisualizacao.WindowState = FormWindowState.Maximized;
+            
             dlgPreVisualizacao.ShowDialog();
         }
 
         private void docRelatorio_BeginPrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
             indiceVotoImpressao = 0;
+        }
+
+        private void lblTitulo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

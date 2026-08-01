@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.Sqlite;
 using System.Data;
-
+using UrnaLab.App.Models;
 namespace UrnaLab.App.Data;
 
 public static class Database
@@ -270,7 +270,9 @@ public static class Database
         return tabela;
     }
 
-    public static void RegistrarVoto(int alunoId, int chapaId)
+    public static ComprovanteVoto RegistrarVoto(
+    int alunoId,
+    int chapaId)
     {
         using SqliteConnection conexao = CriarConexao();
         conexao.Open();
@@ -279,15 +281,19 @@ public static class Database
 
         try
         {
+            string raAluno;
+            string nomeAluno;
+            string turmaAluno;
+
             using (SqliteCommand verificarAluno = conexao.CreateCommand())
             {
                 verificarAluno.Transaction = transacao;
 
                 verificarAluno.CommandText = @"
-                SELECT Status, JaVotou
+                SELECT Ra, Nome, Turma, Status, JaVotou
                 FROM Alunos
                 WHERE Id = @AlunoId
-                LIMIT 1
+                LIMIT 1;
             ";
 
                 verificarAluno.Parameters.AddWithValue(
@@ -295,17 +301,22 @@ public static class Database
                     alunoId
                 );
 
-                using SqliteDataReader leitor = verificarAluno.ExecuteReader();
+                using SqliteDataReader leitor =
+                    verificarAluno.ExecuteReader();
 
                 if (!leitor.Read())
                 {
                     throw new InvalidOperationException(
-                        "Aluno Não Encontrado"
-                        );
+                        "Aluno não encontrado."
+                    );
                 }
 
-                string statusAluno = leitor.GetString(0);
-                long jaVotou = leitor.GetInt64(1);
+                raAluno = leitor.GetString(0);
+                nomeAluno = leitor.GetString(1);
+                turmaAluno = leitor.GetString(2);
+
+                string statusAluno = leitor.GetString(3);
+                long jaVotou = leitor.GetInt64(4);
 
                 if (!string.Equals(
                     statusAluno.Trim(),
@@ -313,28 +324,31 @@ public static class Database
                     StringComparison.OrdinalIgnoreCase))
                 {
                     throw new InvalidOperationException(
-                        "O Aluno está inativo"
-                        );
+                        "O aluno está inativo."
+                    );
                 }
 
                 if (jaVotou == 1)
                 {
                     throw new InvalidOperationException(
                         "O aluno já votou uma vez."
-                        );
+                    );
                 }
             }
+
+            string numeroChapa;
+            string nomeChapa;
 
             using (SqliteCommand verificarChapa = conexao.CreateCommand())
             {
                 verificarChapa.Transaction = transacao;
 
                 verificarChapa.CommandText = @"
-                SELECT COUNT(*)
+                SELECT Numero, Nome
                 FROM Chapas
                 WHERE Id = @ChapaId
-                  AND LOWER (TRIM(Status))
-                      IN (('ativo'), ('ativa'));
+                AND LOWER(TRIM(Status)) IN ('ativo', 'ativa')
+                LIMIT 1;
             ";
 
                 verificarChapa.Parameters.AddWithValue(
@@ -342,23 +356,29 @@ public static class Database
                     chapaId
                 );
 
-                long quantidade =
-                    (long)verificarChapa.ExecuteScalar()!;
+                using SqliteDataReader leitor =
+                    verificarChapa.ExecuteReader();
 
-                if (quantidade == 0)
+                if (!leitor.Read())
                 {
                     throw new InvalidOperationException(
-                        "a chapa selecionada não está ativa"
-                        );
+                        "A chapa selecionada não está ativa."
+                    );
                 }
+
+                numeroChapa = leitor.GetString(0);
+                nomeChapa = leitor.GetString(1);
             }
+
+            DateTime dataHora = DateTime.Now;
+            long votoId;
 
             using (SqliteCommand inserirVoto = conexao.CreateCommand())
             {
                 inserirVoto.Transaction = transacao;
 
                 inserirVoto.CommandText = @"
-                INSERT INTO Votos(
+                INSERT INTO Votos (
                     AlunoId,
                     ChapaId,
                     DataHora
@@ -374,25 +394,41 @@ public static class Database
                     "@AlunoId",
                     alunoId
                 );
+
                 inserirVoto.Parameters.AddWithValue(
                     "@ChapaId",
                     chapaId
                 );
+
                 inserirVoto.Parameters.AddWithValue(
                     "@DataHora",
-                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+                    dataHora.ToString("yyyy-MM-dd HH:mm:ss")
                 );
 
                 inserirVoto.ExecuteNonQuery();
+
+                using SqliteCommand obterVotoId =
+                    conexao.CreateCommand();
+
+                obterVotoId.Transaction = transacao;
+
+                obterVotoId.CommandText =
+                    "SELECT last_insert_rowid();";
+
+                votoId = Convert.ToInt64(
+                    obterVotoId.ExecuteScalar()
+                );
             }
 
             using (SqliteCommand atualizarAluno = conexao.CreateCommand())
             {
+                atualizarAluno.Transaction = transacao;
+
                 atualizarAluno.CommandText = @"
                 UPDATE Alunos
                 SET JaVotou = 1
                 WHERE Id = @AlunoId
-                    AND JaVotou = 0;
+                AND JaVotou = 0;
             ";
 
                 atualizarAluno.Parameters.AddWithValue(
@@ -402,7 +438,19 @@ public static class Database
 
                 atualizarAluno.ExecuteNonQuery();
             }
+
             transacao.Commit();
+
+            return new ComprovanteVoto
+            {
+                VotoId = (int)votoId,
+                RaAluno = raAluno,
+                NomeAluno = nomeAluno,
+                TurmaAluno = turmaAluno,
+                NumeroChapa = numeroChapa,
+                NomeChapa = nomeChapa,
+                DataHora = dataHora
+            };
         }
         catch
         {

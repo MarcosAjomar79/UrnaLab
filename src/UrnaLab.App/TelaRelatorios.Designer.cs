@@ -51,6 +51,7 @@
             lblTitulo.Size = new Size(284, 37);
             lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Relatórios da Eleição";
+            lblTitulo.Click += lblTitulo_Click;
             // 
             // dgvVotos
             // 

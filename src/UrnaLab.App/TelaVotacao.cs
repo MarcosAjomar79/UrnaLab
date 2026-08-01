@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using UrnaLab.App.Data;
+using UrnaLab.App.Models;
+using UrnaLab.App.Services;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -101,41 +103,51 @@ namespace UrnaLab.App
             {
                 return;
             }
+
+            ComprovanteVoto comprovante =
+                Database.RegistrarVoto(alunoId, chapaId);
+
             try
             {
-                Database.RegistrarVoto(
-                    alunoId,
-                    chapaId
+                ImpressoraComprovante impressora =
+                    new ImpressoraComprovante(comprovante);
+
+                impressora.MostrarPreVisualizacao();
+
+                DialogResult desejaImprimir = MessageBox.Show(
+                    "Deseja enviar o comprovante para uma impressora agora?",
+                    "Imprimir comprovante",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
                 );
 
-                MessageBox.Show(
-                    "voto registrado com sucesso!",
-                    "Sucesso",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-
-                DialogResult = DialogResult.OK;
-                Close();
+                if (desejaImprimir == DialogResult.Yes)
+                {
+                    impressora.ImprimirComEscolhaDeImpressora();
+                }
             }
-            catch (InvalidOperationException ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(
-                    ex.Message,
-                    "Voto não registrado",
+                    "O voto foi registrado no banco de dados, mas não foi possível abrir a pré-visualização do comprovante.\n\n" +
+                    $"Detalhes: {ex.Message}",
+                    "Aviso de impressão",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
-                    );
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(
-                    $"Não foi possível registrar o voto \n\n Detalhes: {ex.Message}",
-                    "Erro na Votação",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
                 );
             }
+
+            MessageBox.Show(
+                $"Voto registrado com sucesso.\n\n" +
+                $"Comprovante nº {comprovante.VotoId}\n" +
+                $"RA: {comprovante.RaAluno}\n" +
+                $"Aluno: {comprovante.NomeAluno}\n" +
+                $"Chapa: {comprovante.NumeroChapa} - {comprovante.NomeChapa}",
+                "Voto confirmado",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
         }
+        
     }
 }
