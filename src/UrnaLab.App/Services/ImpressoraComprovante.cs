@@ -11,13 +11,27 @@ namespace UrnaLab.App.Services
     {
         private readonly ComprovanteVoto comprovante;
         private readonly PrintDocument documento;
+        private readonly bool formatoTermico;
 
-        public ImpressoraComprovante(ComprovanteVoto comprovante)
+        public ImpressoraComprovante(
+            ComprovanteVoto comprovante, 
+            bool formatoTermico = false
+        )
         {
             this.comprovante = comprovante;
+            this.formatoTermico = formatoTermico;
 
             documento = new PrintDocument();
             documento.PrintPage += Documento_PrintPage;
+
+            if (formatoTermico)
+            {
+                documento.DefaultPageSettings.PaperSize =
+            new PaperSize("Bobina 80 mm", 315, 800);
+
+                documento.DefaultPageSettings.Margins =
+                    new Margins(10, 10, 10, 10);
+            }
         }
         public void MostrarPreVisualizacao()
         {
@@ -47,9 +61,22 @@ namespace UrnaLab.App.Services
                 return;
             }
 
-            using Font fonteTitulo = new Font("Arial", 16, FontStyle.Bold);
-            using Font fonteTexto = new Font("Arial", 11);
-            using Font fonteRodape = new Font("Arial", 9, FontStyle.Italic);
+            using Font fonteTitulo = new Font(
+                "Arial",
+                formatoTermico ? 10 : 16,
+                FontStyle.Bold
+            );
+
+            using Font fonteTexto = new Font(
+                "Arial",
+                formatoTermico ? 8 : 11
+            );
+
+            using Font fonteRodape = new Font(
+                "Arial",
+                formatoTermico ? 7 : 9,
+                FontStyle.Italic
+            );
 
             int margemEsquerda = e.MarginBounds.Left;
             int y = e.MarginBounds.Top;
@@ -72,7 +99,7 @@ namespace UrnaLab.App.Services
               y
           );
 
-            y += 25;
+            y += formatoTermico ? 18 : 25;
 
             e.Graphics.DrawString(
               $"RA/Matrícula: {comprovante.RaAluno}",
@@ -82,7 +109,7 @@ namespace UrnaLab.App.Services
               y
           );
 
-            y += 25;
+            y += formatoTermico ? 18 : 25;
 
             e.Graphics.DrawString(
               $"Aluno: {comprovante.NomeAluno}",
@@ -92,7 +119,7 @@ namespace UrnaLab.App.Services
               y
           );
 
-            y += 25;
+            y += formatoTermico ? 18 : 25;
 
             e.Graphics.DrawString(
               $"Turma: {comprovante.TurmaAluno}",
@@ -102,7 +129,7 @@ namespace UrnaLab.App.Services
               y
           );
 
-            y += 25;
+            y += formatoTermico ? 18 : 25;
 
             e.Graphics.DrawString(
               $"Data e Hora: {comprovante.DataHora: dd/MM/yyyy HH:mm:ss}",

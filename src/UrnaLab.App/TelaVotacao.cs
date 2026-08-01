@@ -109,11 +109,21 @@ namespace UrnaLab.App
 
             try
             {
+                DialogResult escolhaFormato = MessageBox.Show(
+                    "Deseja preparar o comprovante no formato de bobina térmica de 80 mm?\n\n" +
+                     "Sim: formato térmico.\n" +
+                     "Não: formato de folha normal ou PDF.",
+                     "Formato do comprovante",
+                     MessageBoxButtons.YesNo,
+                     MessageBoxIcon.Question
+            );
+
+                bool formatoTermico = escolhaFormato == DialogResult.Yes;
+
                 ImpressoraComprovante impressora =
-                    new ImpressoraComprovante(comprovante);
+                    new ImpressoraComprovante(comprovante, formatoTermico);
 
                 impressora.MostrarPreVisualizacao();
-
                 DialogResult desejaImprimir = MessageBox.Show(
                     "Deseja enviar o comprovante para uma impressora agora?",
                     "Imprimir comprovante",
