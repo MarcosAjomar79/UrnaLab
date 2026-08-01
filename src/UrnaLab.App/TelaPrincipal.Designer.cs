@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaPrincipal));
             lblTitulo = new Label();
             btnAlunos = new Button();
             btnChapas = new Button();
@@ -90,6 +91,7 @@
             btnRelatorios.TabIndex = 4;
             btnRelatorios.Text = "Relatórios";
             btnRelatorios.UseVisualStyleBackColor = true;
+            btnRelatorios.Click += btnRelatorios_Click;
             // 
             // btnSair
             // 
@@ -113,6 +115,7 @@
             Controls.Add(btnChapas);
             Controls.Add(btnAlunos);
             Controls.Add(lblTitulo);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "TelaPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UrnaLab - Menu Principal";

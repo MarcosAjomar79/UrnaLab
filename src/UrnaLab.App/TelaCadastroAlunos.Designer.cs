@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaCadastroAlunos));
             lblTitulo = new Label();
             lblRa = new Label();
             txtRa = new TextBox();
@@ -190,6 +191,7 @@
             Controls.Add(txtRa);
             Controls.Add(lblRa);
             Controls.Add(lblTitulo);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "TelaCadastroAlunos";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UrnaLab - Cadastro de Alunos";

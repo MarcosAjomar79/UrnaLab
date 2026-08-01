@@ -380,7 +380,7 @@ public static class Database
                 );
                 inserirVoto.Parameters.AddWithValue(
                     "@DataHora",
-                    DateTime.Now.ToString("yyyy-mm-dd HH:mm:ss")
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
                 );
 
                 inserirVoto.ExecuteNonQuery();
@@ -409,5 +409,40 @@ public static class Database
             transacao.Rollback();
             throw;
         }
+    }
+
+    public static DataTable ListarVotosNominais()
+    {
+        using SqliteConnection conexao = CriarConexao();
+
+        conexao.Open();
+
+        string sql = @"
+            SELECT
+                V.Id AS VotoId,
+                A.Ra AS RaAluno,
+                A.Nome AS Aluno,
+                A.Turma AS Turma,
+                C.Numero AS NumeroChapa,
+                C.Nome AS Chapa,
+                V.DataHora As DataHora
+            FROM Votos V
+            INNER JOIN Alunos A
+                ON A.Id = AlunoId
+            INNER JOIN Chapas C
+                ON C.Id = ChapaId
+            ORDER BY V.DataHora DESC;
+        ";
+
+        using SqliteCommand comando = conexao.CreateCommand();
+
+        comando.CommandText = sql;
+
+        using SqliteDataReader leitor = comando.ExecuteReader();
+
+        DataTable tabela = new DataTable();
+        tabela.Load(leitor);
+
+        return tabela;
     }
 }

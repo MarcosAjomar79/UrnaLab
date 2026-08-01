@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaLiberarVotacao));
             lblTitulo = new Label();
             lblRa = new Label();
             txtRa = new TextBox();
@@ -231,6 +232,7 @@
             Controls.Add(lblRa);
             Controls.Add(lblTitulo);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "TelaLiberarVotacao";
             StartPosition = FormStartPosition.CenterScreen;

@@ -28,6 +28,7 @@ partial class TelaLogin
     /// </summary>
     private void InitializeComponent()
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaLogin));
         lblTitulo = new Label();
         lblUsuario = new Label();
         txtUsuario = new TextBox();
@@ -35,6 +36,8 @@ partial class TelaLogin
         txtSenha = new TextBox();
         btnEntrar = new Button();
         btnLimpar = new Button();
+        pictureBox1 = new PictureBox();
+        ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
         SuspendLayout();
         // 
         // lblTitulo
@@ -118,6 +121,17 @@ partial class TelaLogin
         btnLimpar.UseVisualStyleBackColor = true;
         btnLimpar.Click += btnLimpar_Click;
         // 
+        // pictureBox1
+        // 
+        pictureBox1.BackColor = Color.Transparent;
+        pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+        pictureBox1.Location = new Point(149, -10);
+        pictureBox1.Name = "pictureBox1";
+        pictureBox1.Size = new Size(116, 127);
+        pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+        pictureBox1.TabIndex = 6;
+        pictureBox1.TabStop = false;
+        // 
         // TelaLogin
         // 
         AcceptButton = btnEntrar;
@@ -125,6 +139,7 @@ partial class TelaLogin
         AutoScaleMode = AutoScaleMode.Font;
         CancelButton = btnLimpar;
         ClientSize = new Size(800, 450);
+        Controls.Add(pictureBox1);
         Controls.Add(btnLimpar);
         Controls.Add(btnEntrar);
         Controls.Add(txtSenha);
@@ -132,9 +147,11 @@ partial class TelaLogin
         Controls.Add(txtUsuario);
         Controls.Add(lblUsuario);
         Controls.Add(lblTitulo);
+        Icon = (Icon)resources.GetObject("$this.Icon");
         Name = "TelaLogin";
         StartPosition = FormStartPosition.CenterScreen;
         Text = "UrnaLab - Urna Eleitoral Grêmio";
+        ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -148,4 +165,5 @@ partial class TelaLogin
     private TextBox txtSenha;
     private Button btnEntrar;
     private Button btnLimpar;
+    private PictureBox pictureBox1;
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaCadastroChapas));
             lblTitulo = new Label();
             lblNumero = new Label();
             txtNumero = new TextBox();
@@ -167,6 +168,7 @@
             Controls.Add(txtNumero);
             Controls.Add(lblNumero);
             Controls.Add(lblTitulo);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "TelaCadastroChapas";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UrnaLab - Cadastro de Chapas";

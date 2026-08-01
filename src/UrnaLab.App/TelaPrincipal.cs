@@ -43,5 +43,11 @@ namespace UrnaLab.App
         {
 
         }
+
+        private void btnRelatorios_Click(object sender, EventArgs e)
+        {
+            TelaRelatorios telaRelatorios = new TelaRelatorios();
+            telaRelatorios.ShowDialog();
+        }
     }
 }

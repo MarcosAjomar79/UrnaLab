@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaVotacao));
             lblTitulo = new Label();
             grpAluno = new GroupBox();
             lblRaAluno = new Label();
@@ -177,6 +178,7 @@
             Controls.Add(grpAluno);
             Controls.Add(lblTitulo);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "TelaVotacao";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UrnaLab - Votação";
