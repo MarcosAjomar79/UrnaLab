@@ -1,3 +1,5 @@
+using UrnaLab.App.Data;
+
 namespace UrnaLab.App;
 
 public partial class TelaLogin : Form
@@ -24,29 +26,43 @@ public partial class TelaLogin : Form
             return;
         }
 
-        if (usuario == "admin" && senha == "123")
+        string? perfil = Database.ValidarUsuario(usuario, senha);
+
+        if (perfil == null)
         {
             MessageBox.Show(
-                "Login realizado com sucesso!",
-                "Sucesso!",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information
-            );
-
-            TelaPrincipal telaPrincipal = new TelaPrincipal();
-            telaPrincipal.Show();
-            this.Hide();
-        }
-
-        else
-        {
-            MessageBox.Show(
-                "Usuário ou senha inválido, por favor digite novamente.",
+                "Usuário ou senha inválidos.",
                 "Erro de Login",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error
-                );
+            );
+
+            return;
         }
+
+        MessageBox.Show(
+            $"Login realizado com sucesso!\nPerfil: {perfil}",
+            "Sucesso",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information
+        );
+
+        if (perfil == "Administrador")
+        {
+            TelaPrincipal telaPrincipal = new TelaPrincipal();
+            telaPrincipal.ShowDialog();
+
+            this.Hide();
+        }
+
+        else if (perfil == "Mesário")
+        {
+            TelaLiberarVotacao telaMesario = new TelaLiberarVotacao();
+            telaMesario.ShowDialog();
+
+            this.Hide();
+        }
+
     }
 
     private void btnLimpar_Click(object sender, EventArgs e)

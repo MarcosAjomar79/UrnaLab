@@ -14,6 +14,7 @@ static class Program
         // see https://aka.ms/applicationconfiguration.
         ApplicationConfiguration.Initialize();
         Database.CriarTabelas();
+        Database.CriarUsuariosPadrao();
         Application.Run(new TelaLogin());
     }    
 }

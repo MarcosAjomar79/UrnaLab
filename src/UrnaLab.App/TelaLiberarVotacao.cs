@@ -78,7 +78,7 @@ namespace UrnaLab.App
                     MessageBoxIcon.Warning
                 );
 
-                return; 
+                return;
             }
 
             DataRow aluno = resultado.Rows[0];
@@ -115,7 +115,7 @@ namespace UrnaLab.App
 
         private void btnLiberar_Click(object sender, EventArgs e)
         {
-            if(AlunoIdSelecionado == 0)
+            if (AlunoIdSelecionado == 0)
             {
                 MessageBox.Show(
                     "Pesquise e selecione um aluno antes de liberar a votação.",
@@ -141,6 +141,11 @@ namespace UrnaLab.App
             LimparDadosAluno();
             txtRa.Focus();
 
+        }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

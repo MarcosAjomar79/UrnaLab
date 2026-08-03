@@ -295,7 +295,7 @@ namespace UrnaLab.App
 
             indiceVotoImpressao = 0;
 
-            
+
             dlgPreVisualizacao.ShowDialog();
         }
 
@@ -307,6 +307,15 @@ namespace UrnaLab.App
         private void lblTitulo_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnResumoChapas_Click(object sender, EventArgs e)
+        {
+            dgvVotos.DataSource = Database.ListarResultadoPorChapa();
+
+            dgvVotos.Columns["NumeroChapa"].HeaderText = "Número da Chapa";
+            dgvVotos.Columns["NomeChapa"].HeaderText = "Nome da Chapa";
+            dgvVotos.Columns["TotalVotos"].HeaderText = "Total de Votos";
         }
     }
 }

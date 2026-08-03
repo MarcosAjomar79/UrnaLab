@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.Sqlite;
 using System.Data;
 using UrnaLab.App.Models;
+using UrnaLab.App.Services;
 namespace UrnaLab.App.Data;
 
 public static class Database
@@ -45,6 +46,14 @@ public static class Database
                 DataHora TEXT NOT NULL,
                 FOREIGN KEY (AlunoId) REFERENCES Alunos(Id),
                 FOREIGN KEY (ChapaId) REFERENCES Chapas(Id)
+            );
+
+            CREATE TABLE IF NOT EXISTS Usuarios (
+                Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                Usuario TEXT NOT NULL UNIQUE,
+                Senha TEXT NOT NULL,
+                Perfil TEXT NOT NULL,
+                Ativo INTEGER NOT NULL DEFAULT 1
             );
         ";
 
@@ -492,5 +501,107 @@ public static class Database
         tabela.Load(leitor);
 
         return tabela;
+    }
+
+    public static DataTable ListarResultadoPorChapa()
+    {
+        using SqliteConnection conexao = CriarConexao();
+
+        conexao.Open();
+
+        string sql = @"
+        SELECT
+            Chapas.Numero AS NumeroChapa,
+            Chapas.Nome AS NomeChapa,
+            COUNT(Votos.Id) AS TotalVotos
+        FROM Chapas
+        LEFT JOIN Votos ON Votos.ChapaId = Chapas.Id
+        GROUP BY Chapas.Id, Chapas.Numero, Chapas.Nome
+        ORDER BY TotalVotos DESC, Chapas.Numero;
+    ";
+
+        using SqliteCommand comando = conexao.CreateCommand();
+
+        comando.CommandText = sql;
+
+        using SqliteDataReader leitor = comando.ExecuteReader();
+
+        DataTable tabela = new DataTable();
+
+        tabela.Load(leitor);
+
+        return tabela;
+    }
+    public static void CriarUsuariosPadrao()
+    {
+        using SqliteConnection conexao = CriarConexao();
+        conexao.Open();
+
+        using SqliteCommand comando = conexao.CreateCommand();
+
+        comando.CommandText = @"
+            INSERT OR IGNORE INTO Usuarios
+                (Usuario, Senha, Perfil)
+            VALUES
+                (@Usuario, @Senha, @Perfil)
+        ";
+
+        comando.Parameters.AddWithValue("@Usuario", "admin");
+        comando.Parameters.AddWithValue("@Senha", SenhaService.CriarHash("123"));
+        comando.Parameters.AddWithValue("@Perfil", "Administrador");
+        
+        comando.ExecuteNonQuery();
+
+        comando.Parameters.Clear();
+
+        comando.Parameters.AddWithValue("@Usuario", "mesario");
+        comando.Parameters.AddWithValue("@Senha", SenhaService.CriarHash("123"));
+        comando.Parameters.AddWithValue("@Perfil", "Mesário");
+
+        comando.ExecuteNonQuery();
+    }
+
+    public static string? ValidarUsuario(string usuario, string senhaDigitada)
+    {
+        using SqliteConnection conexao = CriarConexao();
+        conexao.Open();
+
+        using SqliteCommand comando = conexao.CreateCommand();
+
+        comando.CommandText = @"
+            SELECT Senha, Perfil
+            FROM Usuarios
+            WHERE Usuario = @Usuario
+                AND Ativo = 1
+            LIMIT 1
+        ";
+
+        comando.Parameters.AddWithValue("@Usuario", usuario);
+        using SqliteDataReader leitor =
+            comando.ExecuteReader();
+
+        if (!leitor.Read())
+        {
+            return null;
+        }
+
+        string senhaArmazenada =
+            leitor.GetString(0);
+
+        string perfil =
+            leitor.GetString(1);
+
+        bool senhaValida =
+            SenhaService.VerificarSenha(
+                senhaDigitada,
+                senhaArmazenada
+            );
+
+        if (!senhaValida)
+        {
+            return null;
+        }
+
+        return perfil;
     }
 }

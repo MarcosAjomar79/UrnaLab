@@ -45,6 +45,7 @@
             btnLiberar = new Button();
             btnLimpar = new Button();
             btnVoltar = new Button();
+            btnSair = new Button();
             grpAluno.SuspendLayout();
             SuspendLayout();
             // 
@@ -198,7 +199,7 @@
             // 
             // btnLimpar
             // 
-            btnLimpar.Location = new Point(290, 490);
+            btnLimpar.Location = new Point(134, 490);
             btnLimpar.Name = "btnLimpar";
             btnLimpar.Size = new Size(130, 38);
             btnLimpar.TabIndex = 6;
@@ -208,13 +209,23 @@
             // 
             // btnVoltar
             // 
-            btnVoltar.Location = new Point(490, 490);
+            btnVoltar.Location = new Point(385, 490);
             btnVoltar.Name = "btnVoltar";
             btnVoltar.Size = new Size(130, 38);
             btnVoltar.TabIndex = 7;
             btnVoltar.Text = "Voltar";
             btnVoltar.UseVisualStyleBackColor = true;
             btnVoltar.Click += btnVoltar_Click;
+            // 
+            // btnSair
+            // 
+            btnSair.Location = new Point(625, 490);
+            btnSair.Name = "btnSair";
+            btnSair.Size = new Size(130, 38);
+            btnSair.TabIndex = 8;
+            btnSair.Text = "Sair";
+            btnSair.UseVisualStyleBackColor = true;
+            btnSair.Click += btnSair_Click;
             // 
             // TelaLiberarVotacao
             // 
@@ -223,6 +234,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnVoltar;
             ClientSize = new Size(884, 561);
+            Controls.Add(btnSair);
             Controls.Add(btnVoltar);
             Controls.Add(btnLimpar);
             Controls.Add(btnLiberar);
@@ -261,5 +273,6 @@
         private Label lblStatusDescricao;
         private Label lblTurmaAluno;
         private Label lblSituacaoVoto;
+        private Button btnSair;
     }
 }

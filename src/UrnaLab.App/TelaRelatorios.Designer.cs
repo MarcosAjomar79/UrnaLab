@@ -39,6 +39,7 @@
             btnVoltar = new Button();
             docRelatorio = new System.Drawing.Printing.PrintDocument();
             dlgPreVisualizacao = new PrintPreviewDialog();
+            btnResumoChapas = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvVotos).BeginInit();
             SuspendLayout();
             // 
@@ -83,7 +84,7 @@
             // btnAtualizar
             // 
             btnAtualizar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnAtualizar.Location = new Point(170, 540);
+            btnAtualizar.Location = new Point(249, 540);
             btnAtualizar.Name = "btnAtualizar";
             btnAtualizar.Size = new Size(130, 45);
             btnAtualizar.TabIndex = 2;
@@ -94,7 +95,7 @@
             // btnExportar
             // 
             btnExportar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnExportar.Location = new Point(350, 540);
+            btnExportar.Location = new Point(425, 540);
             btnExportar.Name = "btnExportar";
             btnExportar.Size = new Size(130, 45);
             btnExportar.TabIndex = 3;
@@ -105,7 +106,7 @@
             // btnImprimir
             // 
             btnImprimir.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnImprimir.Location = new Point(530, 540);
+            btnImprimir.Location = new Point(603, 540);
             btnImprimir.Name = "btnImprimir";
             btnImprimir.Size = new Size(130, 45);
             btnImprimir.TabIndex = 4;
@@ -116,7 +117,7 @@
             // btnVoltar
             // 
             btnVoltar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnVoltar.Location = new Point(710, 540);
+            btnVoltar.Location = new Point(784, 540);
             btnVoltar.Name = "btnVoltar";
             btnVoltar.Size = new Size(130, 45);
             btnVoltar.TabIndex = 5;
@@ -141,11 +142,23 @@
             dlgPreVisualizacao.Visible = false;
             dlgPreVisualizacao.Load += dlgPreVisualizacao_Load;
             // 
+            // btnResumoChapas
+            // 
+            btnResumoChapas.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnResumoChapas.Location = new Point(62, 540);
+            btnResumoChapas.Name = "btnResumoChapas";
+            btnResumoChapas.Size = new Size(125, 45);
+            btnResumoChapas.TabIndex = 6;
+            btnResumoChapas.Text = "Resumo por Chapa";
+            btnResumoChapas.UseVisualStyleBackColor = true;
+            btnResumoChapas.Click += btnResumoChapas_Click;
+            // 
             // TelaRelatorios
             // 
             AutoScaleDimensions = new SizeF(16F, 37F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(984, 661);
+            Controls.Add(btnResumoChapas);
             Controls.Add(btnVoltar);
             Controls.Add(btnImprimir);
             Controls.Add(btnExportar);
@@ -175,5 +188,6 @@
         private Button btnVoltar;
         private System.Drawing.Printing.PrintDocument docRelatorio;
         private PrintPreviewDialog dlgPreVisualizacao;
+        private Button btnResumoChapas;
     }
 }
