@@ -24,39 +24,47 @@ namespace UrnaLab.App
             {
                 dgvVotos.DataSource = Database.ListarVotosNominais();
 
-                if (dgvVotos.Columns.Contains("VotoId"))
+                DataGridViewColumn? colunaVotoId = dgvVotos.Columns["VotoId"];
+                DataGridViewColumn? colunaRaAluno = dgvVotos.Columns["RaAluno"];
+                DataGridViewColumn? colunaAluno = dgvVotos.Columns["Aluno"];
+                DataGridViewColumn? colunaTurma = dgvVotos.Columns["Turma"];
+                DataGridViewColumn? colunaNumeroChapa = dgvVotos.Columns["NumeroChapa"];
+                DataGridViewColumn? colunaChapa = dgvVotos.Columns["Chapa"];
+                DataGridViewColumn? colunaDataHora = dgvVotos.Columns["DataHora"];
+
+                if (colunaVotoId is not null)
                 {
-                    dgvVotos.Columns["VotoId"].Visible = false;
+                    colunaVotoId.Visible = false;
                 }
 
-                if (dgvVotos.Columns.Contains("RaAluno"))
+                if (colunaRaAluno is not null)
                 {
-                    dgvVotos.Columns["RaAluno"].HeaderText = "RA/Matrícula";
+                  colunaRaAluno.Visible = false;
                 }
 
-                if (dgvVotos.Columns.Contains("Aluno"))
+                if (colunaAluno is not null)
                 {
-                    dgvVotos.Columns["Aluno"].HeaderText = "Aluno";
+                    colunaAluno.Visible = false;
                 }
 
-                if (dgvVotos.Columns.Contains("Turma"))
+                if (colunaTurma is not null)
                 {
-                    dgvVotos.Columns["Turma"].HeaderText = "Turma";
+                    colunaTurma.Visible = false;
                 }
 
-                if (dgvVotos.Columns.Contains("NumeroChapa"))
+                if (colunaNumeroChapa is not null)
                 {
-                    dgvVotos.Columns["NumeroChapa"].HeaderText = "Número da Chapa";
+                   colunaNumeroChapa.Visible = false;
                 }
 
-                if (dgvVotos.Columns.Contains("Chapa"))
+                if (colunaChapa is not null)
                 {
-                    dgvVotos.Columns["Chapa"].HeaderText = "Nome da Chapa";
+                    colunaChapa.Visible = false;
                 }
 
-                if (dgvVotos.Columns.Contains("DataHora"))
+                if (colunaDataHora is not null)
                 {
-                    dgvVotos.Columns["DataHora"].HeaderText = "Data e Hora";
+                    colunaDataHora.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -159,7 +167,14 @@ namespace UrnaLab.App
             using Font fonteTexto = new Font("Segoe UI", 10
             );
 
-            e.Graphics.DrawString(
+            System.Drawing.Graphics? grafico = e.Graphics;
+
+            if (grafico is null)
+            {
+                return;
+            }
+
+            grafico.DrawString(
                 "URNALAB - RELATÓRIO NOMINAL DE VOTOS",
                 fonteTitulo,
                 Brushes.Black,
@@ -169,7 +184,7 @@ namespace UrnaLab.App
 
             y += 45;
 
-            e.Graphics.DrawString(
+            grafico.DrawString(
                $"Gerado em: {DateTime.Now: dd/MM/yyyy HH:mm:ss}",
                fonteTitulo,
                Brushes.Black,
@@ -179,7 +194,7 @@ namespace UrnaLab.App
 
             y += 40;
 
-            e.Graphics.DrawString(
+            grafico.DrawString(
                $"Total de Votos Registrados: {votos.Rows.Count}",
                fonteTitulo,
                Brushes.Black,
@@ -201,19 +216,19 @@ namespace UrnaLab.App
 
                 string linha3 = $"Data e Hora: {voto["DataHora"]}";
 
-                float alturaLinha1 = e.Graphics.MeasureString(
+                float alturaLinha1 = grafico.MeasureString(
                     linha1,
                     fonteTexto,
                     largura
                 ).Height;
 
-                float alturaLinha2 = e.Graphics.MeasureString(
+                float alturaLinha2 = grafico.MeasureString(
                     linha2,
                     fonteTexto,
                     largura
                 ).Height;
 
-                float alturaLinha3 = e.Graphics.MeasureString(
+                float alturaLinha3 = grafico.MeasureString(
                     linha3,
                     fonteTexto,
                     largura
@@ -232,7 +247,7 @@ namespace UrnaLab.App
                     return;
                 }
 
-                e.Graphics.DrawString(
+                grafico.DrawString(
                     linha1,
                     fonteCabecalho,
                     Brushes.Black,
@@ -241,7 +256,7 @@ namespace UrnaLab.App
 
                 y += alturaLinha1;
 
-                e.Graphics.DrawString(
+                grafico.DrawString(
                     linha2,
                     fonteTexto,
                     Brushes.Black,
@@ -249,7 +264,7 @@ namespace UrnaLab.App
                 );
                 y += alturaLinha2;
 
-                e.Graphics.DrawString(
+                grafico.DrawString(
                     linha3,
                     fonteTexto,
                     Brushes.Black,
@@ -257,7 +272,7 @@ namespace UrnaLab.App
                 );
                 y += alturaLinha3 + 15;
 
-                e.Graphics.DrawLine(
+                grafico.DrawLine(
                     Pens.Gray,
                     x,
                     y,
@@ -313,9 +328,29 @@ namespace UrnaLab.App
         {
             dgvVotos.DataSource = Database.ListarResultadoPorChapa();
 
-            dgvVotos.Columns["NumeroChapa"].HeaderText = "Número da Chapa";
-            dgvVotos.Columns["NomeChapa"].HeaderText = "Nome da Chapa";
-            dgvVotos.Columns["TotalVotos"].HeaderText = "Total de Votos";
+            DataGridViewColumn? colunaNumeroChapa =
+                dgvVotos.Columns["NumeroChapa"];
+
+            if (colunaNumeroChapa is not null)
+            {
+                colunaNumeroChapa.HeaderText = "Número da Chapa";
+            }
+
+            DataGridViewColumn? colunaNomeChapa =
+                dgvVotos.Columns["NomeChapa"];
+
+            if (colunaNomeChapa is not null)
+            {
+                colunaNomeChapa.HeaderText = "Nome da Chapa";
+            }
+
+            DataGridViewColumn? colunaTotalVotos =
+                dgvVotos.Columns["TotalVotos"];
+
+            if (colunaTotalVotos is not null)
+            {
+                colunaTotalVotos.HeaderText = "Total de Votos";
+            }
         }
     }
 }

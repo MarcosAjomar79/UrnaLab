@@ -40,19 +40,22 @@ namespace UrnaLab.App
         {
             dgvChapas.DataSource = Database.ListarChapasAtivas();
 
-            if (dgvChapas.Columns.Contains("Id"))
+            DataGridViewColumn? colunaId = dgvChapas.Columns["Id"];
+            DataGridViewColumn? colunaNumero = dgvChapas.Columns["Numero"];
+            DataGridViewColumn? colunaNome = dgvChapas.Columns["Nome"];
+
+            if (colunaId is not null)
             {
-                dgvChapas.Columns["Id"].Visible = false;
+                colunaId.Visible = false;
+            }
+            if (colunaNumero is not null)
+            {
+                colunaNumero.HeaderText = "Número";
             }
 
-            if (dgvChapas.Columns.Contains("Numero"))
+            if (colunaNome is not null)
             {
-                dgvChapas.Columns["Numero"].HeaderText = "Número";
-            }
-
-            if (dgvChapas.Columns.Contains("Nome"))
-            {
-                dgvChapas.Columns["Nome"].HeaderText = "Nome da Chapa";
+                colunaNome.HeaderText = "Nome da Chapa";
             }
 
             dgvChapas.ClearSelection();
@@ -98,6 +101,8 @@ namespace UrnaLab.App
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question
             );
+
+            btnConfirmarVoto.Enabled = false;
 
             if (confirmacao != DialogResult.Yes)
             {
