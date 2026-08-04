@@ -32,40 +32,30 @@ namespace UrnaLab.App
                 DataGridViewColumn? colunaChapa = dgvVotos.Columns["Chapa"];
                 DataGridViewColumn? colunaDataHora = dgvVotos.Columns["DataHora"];
 
+
                 if (colunaVotoId is not null)
                 {
                     colunaVotoId.Visible = false;
                 }
 
+                // As colunas abaixo devem permanecer visíveis
                 if (colunaRaAluno is not null)
-                {
-                  colunaRaAluno.Visible = false;
-                }
+                    colunaRaAluno.HeaderText = "RA/Matrícula";
 
                 if (colunaAluno is not null)
-                {
-                    colunaAluno.Visible = false;
-                }
+                    colunaAluno.HeaderText = "Aluno";
 
                 if (colunaTurma is not null)
-                {
-                    colunaTurma.Visible = false;
-                }
+                    colunaTurma.HeaderText = "Turma";
 
                 if (colunaNumeroChapa is not null)
-                {
-                   colunaNumeroChapa.Visible = false;
-                }
+                    colunaNumeroChapa.HeaderText = "Número da Chapa";
 
                 if (colunaChapa is not null)
-                {
-                    colunaChapa.Visible = false;
-                }
+                    colunaChapa.HeaderText = "Nome da Chapa";
 
                 if (colunaDataHora is not null)
-                {
-                    colunaDataHora.Visible = false;
-                }
+                    colunaDataHora.HeaderText = "Data e Hora";
             }
             catch (Exception ex)
             {

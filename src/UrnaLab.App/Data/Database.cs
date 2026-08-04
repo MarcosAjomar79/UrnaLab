@@ -484,11 +484,11 @@ public static class Database
                 C.Nome AS Chapa,
                 V.DataHora As DataHora
             FROM Votos V
-            INNER JOIN Alunos A
-                ON A.Id = AlunoId
-            INNER JOIN Chapas C
-                ON C.Id = ChapaId
-            ORDER BY V.DataHora DESC;
+            INNER JOIN Alunos a
+                ON a.Id = v.AlunoId
+            INNER JOIN Chapas c
+                ON c.Id = v.ChapaId
+            ORDER BY V.DataHora;
         ";
 
         using SqliteCommand comando = conexao.CreateCommand();
