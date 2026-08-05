@@ -97,5 +97,5 @@ Esta versão é uma simulação educacional de uma urna escolar. Ela deve ser ut
 - Bloqueio de voto duplicado: aprovado
 - Relatório nominal: aprovado
 - Resumo por chapa: aprovado
-- Exportação: pendente
-- Impressão: pendente
+- Exportação: aprovado
+- Impressão: aprovado
