@@ -85,3 +85,17 @@ Caso ocorra uma falha, o sistema exibirá uma mensagem informando o problema.
 ## 7. Observação
 
 Esta versão é uma simulação educacional de uma urna escolar. Ela deve ser utilizada somente com autorização e acompanhamento da escola.
+
+## Teste de aceitação final
+
+- Login do administrador: aprovado
+- Login do mesário: aprovado
+- Cadastro de aluno: aprovado
+- Cadastro de chapa: aprovado
+- Liberação de votação: aprovado
+- Registro de voto nominal: aprovado
+- Bloqueio de voto duplicado: aprovado
+- Relatório nominal: aprovado
+- Resumo por chapa: aprovado
+- Exportação: pendente
+- Impressão: pendente
