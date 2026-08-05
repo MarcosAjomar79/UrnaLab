@@ -99,3 +99,8 @@ Esta versão é uma simulação educacional de uma urna escolar. Ela deve ser ut
 - Resumo por chapa: aprovado
 - Exportação: aprovado
 - Impressão: aprovado
+
+## Status da versão
+
+Versão v1.0.0 aprovada em teste externo.
+O aplicativo foi executado fora do Visual Studio com sucesso.
