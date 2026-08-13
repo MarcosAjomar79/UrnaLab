@@ -165,10 +165,16 @@ public static class Database
         conexao.Open();
 
         string sql = @"
-            SELECT Id, Ra, Nome, Turma, Status
-            FROM Alunos
-            ORDER BY Nome;
-        ";
+            SELECT
+            Id,
+            Ra,
+            Nome,
+            Turma,
+            Status,
+            JaVotou
+        FROM Alunos
+        ORDER BY Nome;
+";
 
         using SqliteCommand comando = conexao.CreateCommand();
 
@@ -604,4 +610,31 @@ public static class Database
 
         return perfil;
     }
+
+    public static DataTable BuscarChapaAtivaPorNumero(string numero)
+    {
+        DataTable tabela = new DataTable();
+
+        using var conexao = CriarConexao();
+        conexao.Open();
+
+        using var comando = conexao.CreateCommand();
+
+        comando.CommandText = @"
+        SELECT Id, Numero, Nome, Status
+        FROM Chapas
+        WHERE Numero = $numero
+          AND LOWER(TRIM(Status)) IN ('ativo', 'ativa')
+        LIMIT 1;
+    ";
+
+        comando.Parameters.AddWithValue("$numero", numero);
+
+        using var leitor = comando.ExecuteReader();
+
+        tabela.Load(leitor);
+
+        return tabela;
+    }
+
 }

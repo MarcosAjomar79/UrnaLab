@@ -29,250 +29,490 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaLiberarVotacao));
-            lblTitulo = new Label();
-            lblRa = new Label();
-            txtRa = new TextBox();
-            btnBuscar = new Button();
-            grpAluno = new GroupBox();
-            lblSituacaoVoto = new Label();
-            lblVotoDescricao = new Label();
-            lblStatusAluno = new Label();
-            lblStatusDescricao = new Label();
-            lblTurmaAluno = new Label();
-            lblTurmaDescricao = new Label();
-            lblNomeAluno = new Label();
-            lblNomeDescricao = new Label();
-            btnLiberar = new Button();
-            btnLimpar = new Button();
             btnVoltar = new Button();
+            splitPrincipal = new SplitContainer();
+            btnV11Corrige = new Button();
+            btnV11Confirma = new Button();
+            btnV11LiberarVotacao = new Button();
+            grpDetalhesAluno = new GroupBox();
+            lblV11StatusAluno = new Label();
+            lblStatusDetalhe = new Label();
+            lblV11TurmaAluno = new Label();
+            lblTurmaTitulo = new Label();
+            lblV11RaAluno = new Label();
+            lblRaTitulo = new Label();
+            lblV11NomeAluno = new Label();
+            lblNomeTitulo = new Label();
+            lstV11Alunos = new ListBox();
+            txtV11BuscarAluno = new TextBox();
+            lblSelecionarAluno = new Label();
+            pnlCadastroLiberacao = new Panel();
+            lblCabecalhoLiberacao = new Label();
+            pnlTerminalV11 = new Panel();
+            lblV11SituacaoAluno = new Label();
+            pnlCorpoTerminalV11 = new Panel();
+            pnlVisorV11 = new Panel();
+            lblV11Numero = new Label();
+            lblNumeroTituloV11 = new Label();
+            lblV11Chapa = new Label();
+            lblRotuloChapaV11 = new Label();
+            pnlLinhaVisorV11 = new Panel();
+            lblTituloVisorV11 = new Label();
             btnSair = new Button();
-            grpAluno.SuspendLayout();
+            lblTituloTerminalV11 = new Label();
+            ((System.ComponentModel.ISupportInitialize)splitPrincipal).BeginInit();
+            splitPrincipal.Panel1.SuspendLayout();
+            splitPrincipal.Panel2.SuspendLayout();
+            splitPrincipal.SuspendLayout();
+            grpDetalhesAluno.SuspendLayout();
+            pnlCadastroLiberacao.SuspendLayout();
+            pnlTerminalV11.SuspendLayout();
+            pnlCorpoTerminalV11.SuspendLayout();
+            pnlVisorV11.SuspendLayout();
             SuspendLayout();
-            // 
-            // lblTitulo
-            // 
-            lblTitulo.Anchor = AnchorStyles.Top;
-            lblTitulo.AutoSize = true;
-            lblTitulo.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold);
-            lblTitulo.Location = new Point(340, 35);
-            lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(219, 37);
-            lblTitulo.TabIndex = 0;
-            lblTitulo.Text = "Liberar Votação";
-            // 
-            // lblRa
-            // 
-            lblRa.AutoSize = true;
-            lblRa.Location = new Point(170, 120);
-            lblRa.Name = "lblRa";
-            lblRa.Size = new Size(80, 15);
-            lblRa.TabIndex = 1;
-            lblRa.Text = "RA/Matrícula:";
-            lblRa.Click += label1_Click;
-            // 
-            // txtRa
-            // 
-            txtRa.Location = new Point(290, 115);
-            txtRa.MaxLength = 20;
-            txtRa.Name = "txtRa";
-            txtRa.PlaceholderText = "Digite seu RA/Matrícula:";
-            txtRa.Size = new Size(280, 23);
-            txtRa.TabIndex = 2;
-            // 
-            // btnBuscar
-            // 
-            btnBuscar.Location = new Point(590, 111);
-            btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(110, 35);
-            btnBuscar.TabIndex = 3;
-            btnBuscar.Text = "Buscar";
-            btnBuscar.UseVisualStyleBackColor = true;
-            btnBuscar.Click += btnBuscar_Click;
-            // 
-            // grpAluno
-            // 
-            grpAluno.Controls.Add(lblSituacaoVoto);
-            grpAluno.Controls.Add(lblVotoDescricao);
-            grpAluno.Controls.Add(lblStatusAluno);
-            grpAluno.Controls.Add(lblStatusDescricao);
-            grpAluno.Controls.Add(lblTurmaAluno);
-            grpAluno.Controls.Add(lblTurmaDescricao);
-            grpAluno.Controls.Add(lblNomeAluno);
-            grpAluno.Controls.Add(lblNomeDescricao);
-            grpAluno.Location = new Point(145, 175);
-            grpAluno.Name = "grpAluno";
-            grpAluno.Size = new Size(610, 210);
-            grpAluno.TabIndex = 4;
-            grpAluno.TabStop = false;
-            grpAluno.Text = "Dados do Aluno";
-            // 
-            // lblSituacaoVoto
-            // 
-            lblSituacaoVoto.AutoSize = true;
-            lblSituacaoVoto.Font = new Font("Segoe UI", 10F);
-            lblSituacaoVoto.Location = new Point(160, 130);
-            lblSituacaoVoto.Name = "lblSituacaoVoto";
-            lblSituacaoVoto.Size = new Size(15, 19);
-            lblSituacaoVoto.TabIndex = 7;
-            lblSituacaoVoto.Text = "-";
-            // 
-            // lblVotoDescricao
-            // 
-            lblVotoDescricao.AutoSize = true;
-            lblVotoDescricao.Font = new Font("Segoe UI", 10F);
-            lblVotoDescricao.Location = new Point(35, 130);
-            lblVotoDescricao.Name = "lblVotoDescricao";
-            lblVotoDescricao.Size = new Size(116, 19);
-            lblVotoDescricao.TabIndex = 6;
-            lblVotoDescricao.Text = "Situação do Voto:";
-            // 
-            // lblStatusAluno
-            // 
-            lblStatusAluno.AutoSize = true;
-            lblStatusAluno.Font = new Font("Segoe UI", 10F);
-            lblStatusAluno.Location = new Point(430, 85);
-            lblStatusAluno.Name = "lblStatusAluno";
-            lblStatusAluno.Size = new Size(15, 19);
-            lblStatusAluno.TabIndex = 5;
-            lblStatusAluno.Text = "-";
-            // 
-            // lblStatusDescricao
-            // 
-            lblStatusDescricao.AutoSize = true;
-            lblStatusDescricao.Font = new Font("Segoe UI", 10F);
-            lblStatusDescricao.Location = new Point(330, 85);
-            lblStatusDescricao.Name = "lblStatusDescricao";
-            lblStatusDescricao.Size = new Size(50, 19);
-            lblStatusDescricao.TabIndex = 4;
-            lblStatusDescricao.Text = "Status:";
-            // 
-            // lblTurmaAluno
-            // 
-            lblTurmaAluno.AutoSize = true;
-            lblTurmaAluno.Font = new Font("Segoe UI", 10F);
-            lblTurmaAluno.Location = new Point(160, 85);
-            lblTurmaAluno.Name = "lblTurmaAluno";
-            lblTurmaAluno.Size = new Size(15, 19);
-            lblTurmaAluno.TabIndex = 3;
-            lblTurmaAluno.Text = "-";
-            // 
-            // lblTurmaDescricao
-            // 
-            lblTurmaDescricao.AutoSize = true;
-            lblTurmaDescricao.Font = new Font("Segoe UI", 10F);
-            lblTurmaDescricao.Location = new Point(35, 85);
-            lblTurmaDescricao.Name = "lblTurmaDescricao";
-            lblTurmaDescricao.Size = new Size(51, 19);
-            lblTurmaDescricao.TabIndex = 2;
-            lblTurmaDescricao.Text = "Turma:";
-            // 
-            // lblNomeAluno
-            // 
-            lblNomeAluno.AutoSize = true;
-            lblNomeAluno.Font = new Font("Segoe UI", 10F);
-            lblNomeAluno.Location = new Point(160, 45);
-            lblNomeAluno.Name = "lblNomeAluno";
-            lblNomeAluno.Size = new Size(174, 19);
-            lblNomeAluno.TabIndex = 1;
-            lblNomeAluno.Text = "Nenhum Aluno Pesquisado";
-            // 
-            // lblNomeDescricao
-            // 
-            lblNomeDescricao.AutoSize = true;
-            lblNomeDescricao.Font = new Font("Segoe UI", 10F);
-            lblNomeDescricao.Location = new Point(35, 45);
-            lblNomeDescricao.Name = "lblNomeDescricao";
-            lblNomeDescricao.Size = new Size(49, 19);
-            lblNomeDescricao.TabIndex = 0;
-            lblNomeDescricao.Text = "Nome:";
-            // 
-            // btnLiberar
-            // 
-            btnLiberar.Enabled = false;
-            btnLiberar.Location = new Point(350, 415);
-            btnLiberar.Name = "btnLiberar";
-            btnLiberar.Size = new Size(200, 45);
-            btnLiberar.TabIndex = 5;
-            btnLiberar.Text = "Liberar Votação";
-            btnLiberar.UseVisualStyleBackColor = true;
-            btnLiberar.Click += btnLiberar_Click;
-            // 
-            // btnLimpar
-            // 
-            btnLimpar.Location = new Point(134, 490);
-            btnLimpar.Name = "btnLimpar";
-            btnLimpar.Size = new Size(130, 38);
-            btnLimpar.TabIndex = 6;
-            btnLimpar.Text = "Limpar";
-            btnLimpar.UseVisualStyleBackColor = true;
-            btnLimpar.Click += btnLimpar_Click;
             // 
             // btnVoltar
             // 
-            btnVoltar.Location = new Point(385, 490);
+            btnVoltar.Location = new Point(564, 698);
             btnVoltar.Name = "btnVoltar";
-            btnVoltar.Size = new Size(130, 38);
+            btnVoltar.Size = new Size(130, 43);
             btnVoltar.TabIndex = 7;
             btnVoltar.Text = "Voltar";
             btnVoltar.UseVisualStyleBackColor = true;
             btnVoltar.Click += btnVoltar_Click;
             // 
+            // splitPrincipal
+            // 
+            splitPrincipal.Dock = DockStyle.Fill;
+            splitPrincipal.FixedPanel = FixedPanel.Panel1;
+            splitPrincipal.IsSplitterFixed = true;
+            splitPrincipal.Location = new Point(0, 0);
+            splitPrincipal.Name = "splitPrincipal";
+            // 
+            // splitPrincipal.Panel1
+            // 
+            splitPrincipal.Panel1.Controls.Add(btnV11Corrige);
+            splitPrincipal.Panel1.Controls.Add(btnV11Confirma);
+            splitPrincipal.Panel1.Controls.Add(btnV11LiberarVotacao);
+            splitPrincipal.Panel1.Controls.Add(grpDetalhesAluno);
+            splitPrincipal.Panel1.Controls.Add(lstV11Alunos);
+            splitPrincipal.Panel1.Controls.Add(txtV11BuscarAluno);
+            splitPrincipal.Panel1.Controls.Add(lblSelecionarAluno);
+            splitPrincipal.Panel1.Controls.Add(pnlCadastroLiberacao);
+            // 
+            // splitPrincipal.Panel2
+            // 
+            splitPrincipal.Panel2.Controls.Add(pnlTerminalV11);
+            splitPrincipal.Panel2.Controls.Add(btnVoltar);
+            splitPrincipal.Panel2.Controls.Add(btnSair);
+            splitPrincipal.Panel2.Controls.Add(lblTituloTerminalV11);
+            splitPrincipal.Size = new Size(1384, 761);
+            splitPrincipal.SplitterDistance = 500;
+            splitPrincipal.SplitterWidth = 12;
+            splitPrincipal.TabIndex = 9;
+            // 
+            // btnV11Corrige
+            // 
+            btnV11Corrige.Location = new Point(26, 698);
+            btnV11Corrige.Name = "btnV11Corrige";
+            btnV11Corrige.Size = new Size(130, 43);
+            btnV11Corrige.TabIndex = 10;
+            btnV11Corrige.Text = "Corrige";
+            btnV11Corrige.UseVisualStyleBackColor = true;
+            btnV11Corrige.Click += btnV11Corrige_Click;
+            // 
+            // btnV11Confirma
+            // 
+            btnV11Confirma.Location = new Point(330, 698);
+            btnV11Confirma.Name = "btnV11Confirma";
+            btnV11Confirma.Size = new Size(130, 43);
+            btnV11Confirma.TabIndex = 9;
+            btnV11Confirma.Text = "Confirma";
+            btnV11Confirma.UseVisualStyleBackColor = true;
+            btnV11Confirma.Click += btnV11Confirma_Click;
+            // 
+            // btnV11LiberarVotacao
+            // 
+            btnV11LiberarVotacao.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            btnV11LiberarVotacao.BackColor = Color.ForestGreen;
+            btnV11LiberarVotacao.FlatStyle = FlatStyle.Flat;
+            btnV11LiberarVotacao.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnV11LiberarVotacao.ForeColor = Color.White;
+            btnV11LiberarVotacao.Location = new Point(25, 610);
+            btnV11LiberarVotacao.Name = "btnV11LiberarVotacao";
+            btnV11LiberarVotacao.Size = new Size(450, 55);
+            btnV11LiberarVotacao.TabIndex = 8;
+            btnV11LiberarVotacao.Text = "LIBERAR VOTAÇÃO";
+            btnV11LiberarVotacao.UseVisualStyleBackColor = false;
+            btnV11LiberarVotacao.Click += btnV11LiberarVotacao_Click;
+            // 
+            // grpDetalhesAluno
+            // 
+            grpDetalhesAluno.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            grpDetalhesAluno.Controls.Add(lblV11StatusAluno);
+            grpDetalhesAluno.Controls.Add(lblStatusDetalhe);
+            grpDetalhesAluno.Controls.Add(lblV11TurmaAluno);
+            grpDetalhesAluno.Controls.Add(lblTurmaTitulo);
+            grpDetalhesAluno.Controls.Add(lblV11RaAluno);
+            grpDetalhesAluno.Controls.Add(lblRaTitulo);
+            grpDetalhesAluno.Controls.Add(lblV11NomeAluno);
+            grpDetalhesAluno.Controls.Add(lblNomeTitulo);
+            grpDetalhesAluno.Location = new Point(315, 200);
+            grpDetalhesAluno.Name = "grpDetalhesAluno";
+            grpDetalhesAluno.Size = new Size(180, 390);
+            grpDetalhesAluno.TabIndex = 4;
+            grpDetalhesAluno.TabStop = false;
+            grpDetalhesAluno.Text = "Detalhes do Aluno";
+            // 
+            // lblV11StatusAluno
+            // 
+            lblV11StatusAluno.AutoSize = true;
+            lblV11StatusAluno.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblV11StatusAluno.Location = new Point(15, 260);
+            lblV11StatusAluno.MinimumSize = new Size(150, 30);
+            lblV11StatusAluno.Name = "lblV11StatusAluno";
+            lblV11StatusAluno.Size = new Size(150, 30);
+            lblV11StatusAluno.TabIndex = 7;
+            lblV11StatusAluno.Text = "-";
+            // 
+            // lblStatusDetalhe
+            // 
+            lblStatusDetalhe.AutoSize = true;
+            lblStatusDetalhe.Font = new Font("Segoe UI", 9F);
+            lblStatusDetalhe.Location = new Point(15, 235);
+            lblStatusDetalhe.Name = "lblStatusDetalhe";
+            lblStatusDetalhe.Size = new Size(42, 15);
+            lblStatusDetalhe.TabIndex = 6;
+            lblStatusDetalhe.Text = "Status:";
+            // 
+            // lblV11TurmaAluno
+            // 
+            lblV11TurmaAluno.AutoSize = true;
+            lblV11TurmaAluno.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblV11TurmaAluno.Location = new Point(15, 195);
+            lblV11TurmaAluno.MinimumSize = new Size(150, 30);
+            lblV11TurmaAluno.Name = "lblV11TurmaAluno";
+            lblV11TurmaAluno.Size = new Size(150, 30);
+            lblV11TurmaAluno.TabIndex = 5;
+            lblV11TurmaAluno.Text = "-";
+            // 
+            // lblTurmaTitulo
+            // 
+            lblTurmaTitulo.AutoSize = true;
+            lblTurmaTitulo.Font = new Font("Segoe UI", 9F);
+            lblTurmaTitulo.Location = new Point(15, 170);
+            lblTurmaTitulo.Name = "lblTurmaTitulo";
+            lblTurmaTitulo.Size = new Size(44, 15);
+            lblTurmaTitulo.TabIndex = 4;
+            lblTurmaTitulo.Text = "Turma:";
+            // 
+            // lblV11RaAluno
+            // 
+            lblV11RaAluno.AutoSize = true;
+            lblV11RaAluno.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblV11RaAluno.Location = new Point(15, 130);
+            lblV11RaAluno.MinimumSize = new Size(150, 30);
+            lblV11RaAluno.Name = "lblV11RaAluno";
+            lblV11RaAluno.Size = new Size(150, 30);
+            lblV11RaAluno.TabIndex = 3;
+            lblV11RaAluno.Text = "-";
+            // 
+            // lblRaTitulo
+            // 
+            lblRaTitulo.AutoSize = true;
+            lblRaTitulo.Font = new Font("Segoe UI", 9F);
+            lblRaTitulo.Location = new Point(15, 105);
+            lblRaTitulo.Name = "lblRaTitulo";
+            lblRaTitulo.Size = new Size(80, 15);
+            lblRaTitulo.TabIndex = 2;
+            lblRaTitulo.Text = "RA/Matrícula:";
+            // 
+            // lblV11NomeAluno
+            // 
+            lblV11NomeAluno.AutoSize = true;
+            lblV11NomeAluno.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblV11NomeAluno.Location = new Point(15, 60);
+            lblV11NomeAluno.MinimumSize = new Size(150, 45);
+            lblV11NomeAluno.Name = "lblV11NomeAluno";
+            lblV11NomeAluno.Size = new Size(150, 45);
+            lblV11NomeAluno.TabIndex = 1;
+            lblV11NomeAluno.Text = "-";
+            // 
+            // lblNomeTitulo
+            // 
+            lblNomeTitulo.AutoSize = true;
+            lblNomeTitulo.Font = new Font("Segoe UI", 9F);
+            lblNomeTitulo.Location = new Point(15, 35);
+            lblNomeTitulo.Name = "lblNomeTitulo";
+            lblNomeTitulo.Size = new Size(43, 15);
+            lblNomeTitulo.TabIndex = 0;
+            lblNomeTitulo.Text = "Nome:";
+            // 
+            // lstV11Alunos
+            // 
+            lstV11Alunos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lstV11Alunos.BorderStyle = BorderStyle.FixedSingle;
+            lstV11Alunos.Font = new Font("Segoe UI", 11F);
+            lstV11Alunos.FormattingEnabled = true;
+            lstV11Alunos.IntegralHeight = false;
+            lstV11Alunos.Items.AddRange(new object[] { "" });
+            lstV11Alunos.Location = new Point(25, 200);
+            lstV11Alunos.Name = "lstV11Alunos";
+            lstV11Alunos.Size = new Size(280, 390);
+            lstV11Alunos.TabIndex = 3;
+            lstV11Alunos.SelectedIndexChanged += lstV11Alunos_SelectedIndexChanged;
+            // 
+            // txtV11BuscarAluno
+            // 
+            txtV11BuscarAluno.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtV11BuscarAluno.Font = new Font("Segoe UI", 12F);
+            txtV11BuscarAluno.Location = new Point(25, 145);
+            txtV11BuscarAluno.MaxLength = 100;
+            txtV11BuscarAluno.Name = "txtV11BuscarAluno";
+            txtV11BuscarAluno.PlaceholderText = "Buscar por Nome ou RA";
+            txtV11BuscarAluno.Size = new Size(450, 29);
+            txtV11BuscarAluno.TabIndex = 2;
+            txtV11BuscarAluno.TextChanged += txtV11BuscarAluno_TextChanged;
+            // 
+            // lblSelecionarAluno
+            // 
+            lblSelecionarAluno.AutoSize = true;
+            lblSelecionarAluno.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblSelecionarAluno.ForeColor = Color.MidnightBlue;
+            lblSelecionarAluno.Location = new Point(25, 106);
+            lblSelecionarAluno.Name = "lblSelecionarAluno";
+            lblSelecionarAluno.Size = new Size(191, 30);
+            lblSelecionarAluno.TabIndex = 1;
+            lblSelecionarAluno.Text = "Selecionar Aluno:";
+            // 
+            // pnlCadastroLiberacao
+            // 
+            pnlCadastroLiberacao.BackColor = Color.White;
+            pnlCadastroLiberacao.BorderStyle = BorderStyle.FixedSingle;
+            pnlCadastroLiberacao.Controls.Add(lblCabecalhoLiberacao);
+            pnlCadastroLiberacao.Dock = DockStyle.Top;
+            pnlCadastroLiberacao.Location = new Point(0, 0);
+            pnlCadastroLiberacao.Name = "pnlCadastroLiberacao";
+            pnlCadastroLiberacao.Size = new Size(500, 100);
+            pnlCadastroLiberacao.TabIndex = 0;
+            // 
+            // lblCabecalhoLiberacao
+            // 
+            lblCabecalhoLiberacao.AutoSize = true;
+            lblCabecalhoLiberacao.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblCabecalhoLiberacao.ForeColor = Color.MidnightBlue;
+            lblCabecalhoLiberacao.Location = new Point(25, 20);
+            lblCabecalhoLiberacao.Name = "lblCabecalhoLiberacao";
+            lblCabecalhoLiberacao.Size = new Size(235, 30);
+            lblCabecalhoLiberacao.TabIndex = 1;
+            lblCabecalhoLiberacao.Text = "Liberação de Votação";
+            // 
+            // pnlTerminalV11
+            // 
+            pnlTerminalV11.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pnlTerminalV11.BorderStyle = BorderStyle.FixedSingle;
+            pnlTerminalV11.Controls.Add(lblV11SituacaoAluno);
+            pnlTerminalV11.Controls.Add(pnlCorpoTerminalV11);
+            pnlTerminalV11.Location = new Point(30, 80);
+            pnlTerminalV11.Name = "pnlTerminalV11";
+            pnlTerminalV11.Size = new Size(504, 645);
+            pnlTerminalV11.TabIndex = 1;
+            // 
+            // lblV11SituacaoAluno
+            // 
+            lblV11SituacaoAluno.FlatStyle = FlatStyle.System;
+            lblV11SituacaoAluno.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblV11SituacaoAluno.ForeColor = Color.Red;
+            lblV11SituacaoAluno.Location = new Point(13, 25);
+            lblV11SituacaoAluno.Name = "lblV11SituacaoAluno";
+            lblV11SituacaoAluno.Size = new Size(289, 40);
+            lblV11SituacaoAluno.TabIndex = 9;
+            lblV11SituacaoAluno.Text = "Selecione um aluno";
+            lblV11SituacaoAluno.Click += lblV11SituacaoAluno_Click;
+            // 
+            // pnlCorpoTerminalV11
+            // 
+            pnlCorpoTerminalV11.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pnlCorpoTerminalV11.BackColor = Color.Gainsboro;
+            pnlCorpoTerminalV11.BorderStyle = BorderStyle.FixedSingle;
+            pnlCorpoTerminalV11.Controls.Add(pnlVisorV11);
+            pnlCorpoTerminalV11.Location = new Point(-1, 75);
+            pnlCorpoTerminalV11.Name = "pnlCorpoTerminalV11";
+            pnlCorpoTerminalV11.Size = new Size(504, 585);
+            pnlCorpoTerminalV11.TabIndex = 0;
+            // 
+            // pnlVisorV11
+            // 
+            pnlVisorV11.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            pnlVisorV11.BackColor = Color.AliceBlue;
+            pnlVisorV11.BorderStyle = BorderStyle.Fixed3D;
+            pnlVisorV11.Controls.Add(lblV11Numero);
+            pnlVisorV11.Controls.Add(lblNumeroTituloV11);
+            pnlVisorV11.Controls.Add(lblV11Chapa);
+            pnlVisorV11.Controls.Add(lblRotuloChapaV11);
+            pnlVisorV11.Controls.Add(pnlLinhaVisorV11);
+            pnlVisorV11.Controls.Add(lblTituloVisorV11);
+            pnlVisorV11.Location = new Point(25, 80);
+            pnlVisorV11.Name = "pnlVisorV11";
+            pnlVisorV11.Size = new Size(390, 400);
+            pnlVisorV11.TabIndex = 0;
+            // 
+            // lblV11Numero
+            // 
+            lblV11Numero.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblV11Numero.BackColor = Color.Transparent;
+            lblV11Numero.Font = new Font("Segoe UI", 60F, FontStyle.Bold);
+            lblV11Numero.ForeColor = Color.Black;
+            lblV11Numero.Location = new Point(23, 183);
+            lblV11Numero.Name = "lblV11Numero";
+            lblV11Numero.Size = new Size(340, 100);
+            lblV11Numero.TabIndex = 5;
+            lblV11Numero.Text = "--";
+            lblV11Numero.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblNumeroTituloV11
+            // 
+            lblNumeroTituloV11.AutoSize = true;
+            lblNumeroTituloV11.BackColor = Color.Transparent;
+            lblNumeroTituloV11.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblNumeroTituloV11.ForeColor = Color.Navy;
+            lblNumeroTituloV11.Location = new Point(25, 150);
+            lblNumeroTituloV11.Name = "lblNumeroTituloV11";
+            lblNumeroTituloV11.Size = new Size(68, 19);
+            lblNumeroTituloV11.TabIndex = 4;
+            lblNumeroTituloV11.Text = "Número:";
+            // 
+            // lblV11Chapa
+            // 
+            lblV11Chapa.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblV11Chapa.BackColor = Color.Transparent;
+            lblV11Chapa.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblV11Chapa.ForeColor = Color.Black;
+            lblV11Chapa.Location = new Point(25, 108);
+            lblV11Chapa.Name = "lblV11Chapa";
+            lblV11Chapa.Size = new Size(340, 30);
+            lblV11Chapa.TabIndex = 3;
+            lblV11Chapa.Text = "Aguardando o número...";
+            lblV11Chapa.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblRotuloChapaV11
+            // 
+            lblRotuloChapaV11.AutoSize = true;
+            lblRotuloChapaV11.BackColor = Color.Transparent;
+            lblRotuloChapaV11.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblRotuloChapaV11.ForeColor = Color.DarkBlue;
+            lblRotuloChapaV11.Location = new Point(25, 85);
+            lblRotuloChapaV11.Name = "lblRotuloChapaV11";
+            lblRotuloChapaV11.Size = new Size(55, 19);
+            lblRotuloChapaV11.TabIndex = 2;
+            lblRotuloChapaV11.Text = "Chapa:";
+            // 
+            // pnlLinhaVisorV11
+            // 
+            pnlLinhaVisorV11.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            pnlLinhaVisorV11.Location = new Point(25, 65);
+            pnlLinhaVisorV11.Name = "pnlLinhaVisorV11";
+            pnlLinhaVisorV11.Size = new Size(340, 2);
+            pnlLinhaVisorV11.TabIndex = 1;
+            // 
+            // lblTituloVisorV11
+            // 
+            lblTituloVisorV11.AutoSize = true;
+            lblTituloVisorV11.BackColor = Color.Transparent;
+            lblTituloVisorV11.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblTituloVisorV11.ForeColor = Color.Navy;
+            lblTituloVisorV11.Location = new Point(95, 25);
+            lblTituloVisorV11.Name = "lblTituloVisorV11";
+            lblTituloVisorV11.Size = new Size(217, 30);
+            lblTituloVisorV11.TabIndex = 0;
+            lblTituloVisorV11.Text = "VOTAÇÃO ESCOLAR";
+            // 
             // btnSair
             // 
-            btnSair.Location = new Point(625, 490);
+            btnSair.Location = new Point(749, 698);
             btnSair.Name = "btnSair";
-            btnSair.Size = new Size(130, 38);
+            btnSair.Size = new Size(111, 43);
             btnSair.TabIndex = 8;
             btnSair.Text = "Sair";
+            btnSair.UseMnemonic = false;
             btnSair.UseVisualStyleBackColor = true;
             btnSair.Click += btnSair_Click;
             // 
+            // lblTituloTerminalV11
+            // 
+            lblTituloTerminalV11.AutoSize = true;
+            lblTituloTerminalV11.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblTituloTerminalV11.ForeColor = Color.MidnightBlue;
+            lblTituloTerminalV11.Location = new Point(30, 30);
+            lblTituloTerminalV11.Name = "lblTituloTerminalV11";
+            lblTituloTerminalV11.Size = new Size(224, 30);
+            lblTituloTerminalV11.TabIndex = 0;
+            lblTituloTerminalV11.Text = "Terminal de Votação";
+            // 
             // TelaLiberarVotacao
             // 
-            AcceptButton = btnBuscar;
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            CancelButton = btnVoltar;
-            ClientSize = new Size(884, 561);
-            Controls.Add(btnSair);
-            Controls.Add(btnVoltar);
-            Controls.Add(btnLimpar);
-            Controls.Add(btnLiberar);
-            Controls.Add(grpAluno);
-            Controls.Add(btnBuscar);
-            Controls.Add(txtRa);
-            Controls.Add(lblRa);
-            Controls.Add(lblTitulo);
+            BackColor = Color.WhiteSmoke;
+            ClientSize = new Size(1384, 761);
+            Controls.Add(splitPrincipal);
+            Font = new Font("Segoe UI", 10F);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            KeyPreview = true;
             MaximizeBox = false;
+            MinimumSize = new Size(1100, 650);
             Name = "TelaLiberarVotacao";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "UrnaLab - Liberar Votação";
-            grpAluno.ResumeLayout(false);
-            grpAluno.PerformLayout();
+            Text = "UrnaLab - Simulação Escolar";
+            splitPrincipal.Panel1.ResumeLayout(false);
+            splitPrincipal.Panel1.PerformLayout();
+            splitPrincipal.Panel2.ResumeLayout(false);
+            splitPrincipal.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitPrincipal).EndInit();
+            splitPrincipal.ResumeLayout(false);
+            grpDetalhesAluno.ResumeLayout(false);
+            grpDetalhesAluno.PerformLayout();
+            pnlCadastroLiberacao.ResumeLayout(false);
+            pnlCadastroLiberacao.PerformLayout();
+            pnlTerminalV11.ResumeLayout(false);
+            pnlCorpoTerminalV11.ResumeLayout(false);
+            pnlVisorV11.ResumeLayout(false);
+            pnlVisorV11.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private Label lblTitulo;
-        private Label lblRa;
-        private TextBox txtRa;
-        private Button btnBuscar;
-        private GroupBox grpAluno;
-        private Button btnLiberar;
-        private Button btnLimpar;
         private Button btnVoltar;
-        private Label lblTurmaDescricao;
-        private Label lblNomeAluno;
-        private Label lblNomeDescricao;
-        private Label lblVotoDescricao;
-        private Label lblStatusAluno;
-        private Label lblStatusDescricao;
-        private Label lblTurmaAluno;
-        private Label lblSituacaoVoto;
+        private SplitContainer splitPrincipal;
+        private Panel pnlCadastroLiberacao;
+        private Label lblCabecalhoLiberacao;
+        private Label lblSelecionarAluno;
+        private TextBox txtV11BuscarAluno;
+        private ListBox lstV11Alunos;
+        private GroupBox grpDetalhesAluno;
+        private Label lblV11StatusAluno;
+        private Label lblStatusDetalhe;
+        private Label lblV11TurmaAluno;
+        private Label lblTurmaTitulo;
+        private Label lblV11RaAluno;
+        private Label lblRaTitulo;
+        private Label lblV11NomeAluno;
+        private Label lblNomeTitulo;
+        private Button btnV11LiberarVotacao;
+        private Label lblTituloTerminalV11;
+        private Panel pnlTerminalV11;
+        private Panel pnlCorpoTerminalV11;
+        private Panel pnlVisorV11;
+        private Label lblTituloVisorV11;
+        private Panel pnlLinhaVisorV11;
+        private Label lblRotuloChapaV11;
+        private Label lblV11Chapa;
+        private Label lblNumeroTituloV11;
+        private Label lblV11Numero;
         private Button btnSair;
+        private Label lblV11SituacaoAluno;
+        private Button btnV11Corrige;
+        private Button btnV11Confirma;
     }
 }
