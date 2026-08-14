@@ -451,7 +451,7 @@ namespace UrnaLab.App
 
         private void FinalizarVotacaoV11()
         {
-            
+
             terminalV11Liberado = false;
 
             numeroDigitadoV11 = "";
@@ -470,7 +470,7 @@ namespace UrnaLab.App
 
             lblV11Chapa.Text = "Aguardando o número...";
             lblV11Numero.Text = "--";
-            
+
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -514,6 +514,11 @@ namespace UrnaLab.App
         private void btnV11Confirma_Click(object sender, EventArgs e)
         {
             ConfirmarVotoV11();
+        }
+
+        private void TelaLiberarVotacao_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

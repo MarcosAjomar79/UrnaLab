@@ -315,7 +315,7 @@
             pnlTerminalV11.Controls.Add(pnlCorpoTerminalV11);
             pnlTerminalV11.Location = new Point(30, 80);
             pnlTerminalV11.Name = "pnlTerminalV11";
-            pnlTerminalV11.Size = new Size(504, 645);
+            pnlTerminalV11.Size = new Size(496, 645);
             pnlTerminalV11.TabIndex = 1;
             // 
             // lblV11SituacaoAluno
@@ -338,7 +338,7 @@
             pnlCorpoTerminalV11.Controls.Add(pnlVisorV11);
             pnlCorpoTerminalV11.Location = new Point(-1, 75);
             pnlCorpoTerminalV11.Name = "pnlCorpoTerminalV11";
-            pnlCorpoTerminalV11.Size = new Size(504, 585);
+            pnlCorpoTerminalV11.Size = new Size(496, 585);
             pnlCorpoTerminalV11.TabIndex = 0;
             // 
             // pnlVisorV11
