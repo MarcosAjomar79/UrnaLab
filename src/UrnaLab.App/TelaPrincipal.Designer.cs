@@ -42,9 +42,9 @@
             lblTitulo.Anchor = AnchorStyles.Top;
             lblTitulo.AutoSize = true;
             lblTitulo.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            lblTitulo.Location = new Point(345, 40);
+            lblTitulo.Location = new Point(541, 53);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(210, 37);
+            lblTitulo.Size = new Size(263, 46);
             lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Menu Principal";
             lblTitulo.TextAlign = ContentAlignment.TopCenter;
@@ -52,9 +52,10 @@
             // btnAlunos
             // 
             btnAlunos.Anchor = AnchorStyles.Top;
-            btnAlunos.Location = new Point(340, 130);
+            btnAlunos.Location = new Point(536, 173);
+            btnAlunos.Margin = new Padding(3, 4, 3, 4);
             btnAlunos.Name = "btnAlunos";
-            btnAlunos.Size = new Size(220, 45);
+            btnAlunos.Size = new Size(251, 60);
             btnAlunos.TabIndex = 1;
             btnAlunos.Text = "Cadastrar Alunos";
             btnAlunos.UseVisualStyleBackColor = true;
@@ -63,9 +64,10 @@
             // btnChapas
             // 
             btnChapas.Anchor = AnchorStyles.Top;
-            btnChapas.Location = new Point(340, 190);
+            btnChapas.Location = new Point(536, 253);
+            btnChapas.Margin = new Padding(3, 4, 3, 4);
             btnChapas.Name = "btnChapas";
-            btnChapas.Size = new Size(220, 45);
+            btnChapas.Size = new Size(251, 60);
             btnChapas.TabIndex = 2;
             btnChapas.Text = "Cadastrar Chapas";
             btnChapas.UseVisualStyleBackColor = true;
@@ -74,9 +76,10 @@
             // btnVotacao
             // 
             btnVotacao.Anchor = AnchorStyles.Top;
-            btnVotacao.Location = new Point(340, 250);
+            btnVotacao.Location = new Point(536, 333);
+            btnVotacao.Margin = new Padding(3, 4, 3, 4);
             btnVotacao.Name = "btnVotacao";
-            btnVotacao.Size = new Size(220, 45);
+            btnVotacao.Size = new Size(251, 60);
             btnVotacao.TabIndex = 3;
             btnVotacao.Text = "Liberar Votação";
             btnVotacao.UseVisualStyleBackColor = true;
@@ -85,9 +88,10 @@
             // btnRelatorios
             // 
             btnRelatorios.Anchor = AnchorStyles.Top;
-            btnRelatorios.Location = new Point(340, 310);
+            btnRelatorios.Location = new Point(536, 413);
+            btnRelatorios.Margin = new Padding(3, 4, 3, 4);
             btnRelatorios.Name = "btnRelatorios";
-            btnRelatorios.Size = new Size(220, 45);
+            btnRelatorios.Size = new Size(251, 60);
             btnRelatorios.TabIndex = 4;
             btnRelatorios.Text = "Relatórios";
             btnRelatorios.UseVisualStyleBackColor = true;
@@ -96,9 +100,10 @@
             // btnSair
             // 
             btnSair.Anchor = AnchorStyles.Top;
-            btnSair.Location = new Point(340, 370);
+            btnSair.Location = new Point(536, 493);
+            btnSair.Margin = new Padding(3, 4, 3, 4);
             btnSair.Name = "btnSair";
-            btnSair.Size = new Size(220, 45);
+            btnSair.Size = new Size(251, 60);
             btnSair.TabIndex = 5;
             btnSair.Text = "Sair";
             btnSair.UseVisualStyleBackColor = true;
@@ -106,9 +111,11 @@
             // 
             // TelaPrincipal
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(884, 561);
+            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            AutoScroll = true;
+            AutoScrollMinSize = new Size(1300, 800);
+            ClientSize = new Size(1326, 748);
             Controls.Add(btnSair);
             Controls.Add(btnRelatorios);
             Controls.Add(btnVotacao);
@@ -116,6 +123,7 @@
             Controls.Add(btnAlunos);
             Controls.Add(lblTitulo);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             Name = "TelaPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UrnaLab - Menu Principal";

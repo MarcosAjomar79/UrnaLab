@@ -22,21 +22,26 @@ namespace UrnaLab.App
 
         private void btnAlunos_Click(object sender, EventArgs e)
         {
+            this.Hide();
             TelaCadastroAlunos telaCadastroAlunos = new TelaCadastroAlunos();
             telaCadastroAlunos.ShowDialog();
+            this.Show();
         }
 
         private void btnChapas_Click(object sender, EventArgs e)
         {
+            this.Hide();
             TelaCadastroChapas telaCadastroChapas = new TelaCadastroChapas();
             telaCadastroChapas.ShowDialog();
+            this.Show();
         }
 
         private void btnVotacao_Click(object sender, EventArgs e)
         {
+            this.Hide();
             TelaLiberarVotacao telaLiberarVotacao = new TelaLiberarVotacao();
             telaLiberarVotacao.ShowDialog();
-
+            this.Show();
         }
 
         private void TelaPrincipal_Load(object sender, EventArgs e)
@@ -46,8 +51,10 @@ namespace UrnaLab.App
 
         private void btnRelatorios_Click(object sender, EventArgs e)
         {
+            this.Hide();
             TelaRelatorios telaRelatorios = new TelaRelatorios();
             telaRelatorios.ShowDialog();
+            this.Show();
         }
     }
 }

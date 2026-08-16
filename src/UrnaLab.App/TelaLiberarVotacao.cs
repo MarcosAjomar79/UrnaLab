@@ -520,5 +520,15 @@ namespace UrnaLab.App
         {
 
         }
+
+        private void pnlTerminalV11_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void splitPrincipal_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

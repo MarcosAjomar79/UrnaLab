@@ -50,69 +50,72 @@
             lblTitulo.Anchor = AnchorStyles.Top;
             lblTitulo.AutoSize = true;
             lblTitulo.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            lblTitulo.Location = new Point(394, 40);
+            lblTitulo.Location = new Point(510, 53);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(266, 37);
+            lblTitulo.Size = new Size(330, 46);
             lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Cadastro de Alunos";
             // 
             // lblRa
             // 
             lblRa.AutoSize = true;
-            lblRa.Location = new Point(220, 130);
+            lblRa.Location = new Point(251, 173);
             lblRa.Name = "lblRa";
-            lblRa.Size = new Size(80, 15);
+            lblRa.Size = new Size(99, 20);
             lblRa.TabIndex = 1;
             lblRa.Text = "RA/Matrícula:";
             // 
             // txtRa
             // 
-            txtRa.Location = new Point(360, 126);
+            txtRa.Location = new Point(411, 168);
+            txtRa.Margin = new Padding(3, 4, 3, 4);
             txtRa.Name = "txtRa";
             txtRa.PlaceholderText = "Digite o seu RA/Matrícula";
-            txtRa.Size = new Size(260, 23);
+            txtRa.Size = new Size(297, 27);
             txtRa.TabIndex = 2;
             // 
             // lblNome
             // 
             lblNome.AutoSize = true;
-            lblNome.Location = new Point(220, 180);
+            lblNome.Location = new Point(251, 240);
             lblNome.Name = "lblNome";
-            lblNome.Size = new Size(99, 15);
+            lblNome.Size = new Size(123, 20);
             lblNome.TabIndex = 3;
             lblNome.Text = "Nome Completo:";
             // 
             // txtNome
             // 
-            txtNome.Location = new Point(360, 176);
+            txtNome.Location = new Point(411, 235);
+            txtNome.Margin = new Padding(3, 4, 3, 4);
             txtNome.Name = "txtNome";
             txtNome.PlaceholderText = "Digite o seu nome completo";
-            txtNome.Size = new Size(360, 23);
+            txtNome.Size = new Size(411, 27);
             txtNome.TabIndex = 4;
             // 
             // lblTurma
             // 
             lblTurma.AutoSize = true;
-            lblTurma.Location = new Point(220, 230);
+            lblTurma.Location = new Point(251, 307);
             lblTurma.Name = "lblTurma";
-            lblTurma.Size = new Size(44, 15);
+            lblTurma.Size = new Size(54, 20);
             lblTurma.TabIndex = 5;
             lblTurma.Text = "Turma:";
             // 
             // txtTurma
             // 
-            txtTurma.Location = new Point(360, 226);
+            txtTurma.Location = new Point(411, 301);
+            txtTurma.Margin = new Padding(3, 4, 3, 4);
             txtTurma.Name = "txtTurma";
             txtTurma.PlaceholderText = "Digite a sua Turma";
-            txtTurma.Size = new Size(180, 23);
+            txtTurma.Size = new Size(205, 27);
             txtTurma.TabIndex = 6;
             // 
             // lblStatus
             // 
             lblStatus.AutoSize = true;
-            lblStatus.Location = new Point(220, 280);
+            lblStatus.Location = new Point(251, 373);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(42, 15);
+            lblStatus.Size = new Size(52, 20);
             lblStatus.TabIndex = 7;
             lblStatus.Text = "Status:";
             // 
@@ -121,17 +124,19 @@
             cboStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             cboStatus.FormattingEnabled = true;
             cboStatus.Items.AddRange(new object[] { "Ativo", "Inativo" });
-            cboStatus.Location = new Point(360, 276);
+            cboStatus.Location = new Point(411, 368);
+            cboStatus.Margin = new Padding(3, 4, 3, 4);
             cboStatus.Name = "cboStatus";
-            cboStatus.Size = new Size(180, 23);
+            cboStatus.Size = new Size(205, 28);
             cboStatus.TabIndex = 8;
             cboStatus.SelectedIndexChanged += cboStatus_SelectedIndexChanged;
             // 
             // btnSalvar
             // 
-            btnSalvar.Location = new Point(280, 343);
+            btnSalvar.Location = new Point(320, 457);
+            btnSalvar.Margin = new Padding(3, 4, 3, 4);
             btnSalvar.Name = "btnSalvar";
-            btnSalvar.Size = new Size(120, 40);
+            btnSalvar.Size = new Size(137, 53);
             btnSalvar.TabIndex = 9;
             btnSalvar.Text = "Salvar";
             btnSalvar.UseVisualStyleBackColor = true;
@@ -139,9 +144,10 @@
             // 
             // btnLimpar
             // 
-            btnLimpar.Location = new Point(420, 343);
+            btnLimpar.Location = new Point(480, 457);
+            btnLimpar.Margin = new Padding(3, 4, 3, 4);
             btnLimpar.Name = "btnLimpar";
-            btnLimpar.Size = new Size(120, 40);
+            btnLimpar.Size = new Size(137, 53);
             btnLimpar.TabIndex = 10;
             btnLimpar.Text = "Limpar";
             btnLimpar.UseVisualStyleBackColor = true;
@@ -149,9 +155,10 @@
             // 
             // btnVoltar
             // 
-            btnVoltar.Location = new Point(546, 343);
+            btnVoltar.Location = new Point(624, 457);
+            btnVoltar.Margin = new Padding(3, 4, 3, 4);
             btnVoltar.Name = "btnVoltar";
-            btnVoltar.Size = new Size(120, 40);
+            btnVoltar.Size = new Size(137, 53);
             btnVoltar.TabIndex = 11;
             btnVoltar.Text = "Voltar";
             btnVoltar.UseVisualStyleBackColor = true;
@@ -163,21 +170,25 @@
             dgvAlunos.AllowUserToDeleteRows = false;
             dgvAlunos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvAlunos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvAlunos.Location = new Point(119, 420);
+            dgvAlunos.Location = new Point(136, 560);
+            dgvAlunos.Margin = new Padding(3, 4, 3, 4);
             dgvAlunos.Name = "dgvAlunos";
             dgvAlunos.ReadOnly = true;
+            dgvAlunos.RowHeadersWidth = 51;
             dgvAlunos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvAlunos.Size = new Size(740, 180);
+            dgvAlunos.Size = new Size(846, 240);
             dgvAlunos.TabIndex = 12;
             dgvAlunos.CellContentClick += dgvAlunos_CellContentClick;
             // 
             // TelaCadastroAlunos
             // 
             AcceptButton = btnSalvar;
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoScroll = true;
+            AutoScrollMinSize = new Size(1300, 800);
             CancelButton = btnVoltar;
-            ClientSize = new Size(1033, 662);
+            ClientSize = new Size(1181, 883);
             Controls.Add(dgvAlunos);
             Controls.Add(btnVoltar);
             Controls.Add(btnLimpar);
@@ -192,6 +203,7 @@
             Controls.Add(lblRa);
             Controls.Add(lblTitulo);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             Name = "TelaCadastroAlunos";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UrnaLab - Cadastro de Alunos";

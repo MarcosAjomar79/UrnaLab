@@ -30,13 +30,9 @@ partial class TelaLogin
     {
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaLogin));
         lblTitulo = new Label();
-        lblUsuario = new Label();
-        txtUsuario = new TextBox();
-        lblSenha = new Label();
-        txtSenha = new TextBox();
         btnEntrar = new Button();
-        btnLimpar = new Button();
         pictureBox1 = new PictureBox();
+        label1 = new Label();
         ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
         SuspendLayout();
         // 
@@ -45,107 +41,57 @@ partial class TelaLogin
         lblTitulo.Anchor = AnchorStyles.Top;
         lblTitulo.AutoSize = true;
         lblTitulo.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        lblTitulo.Location = new Point(271, 25);
+        lblTitulo.Location = new Point(412, 64);
         lblTitulo.Name = "lblTitulo";
         lblTitulo.Size = new Size(259, 37);
         lblTitulo.TabIndex = 0;
         lblTitulo.Text = "Acesso ao UrnaLab";
         lblTitulo.TextAlign = ContentAlignment.TopCenter;
         // 
-        // lblUsuario
-        // 
-        lblUsuario.Anchor = AnchorStyles.Top;
-        lblUsuario.AutoSize = true;
-        lblUsuario.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        lblUsuario.Location = new Point(230, 120);
-        lblUsuario.Name = "lblUsuario";
-        lblUsuario.Size = new Size(62, 20);
-        lblUsuario.TabIndex = 1;
-        lblUsuario.Text = "Usuário:";
-        // 
-        // txtUsuario
-        // 
-        txtUsuario.Anchor = AnchorStyles.Top;
-        txtUsuario.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        txtUsuario.Location = new Point(320, 116);
-        txtUsuario.MaxLength = 50;
-        txtUsuario.Name = "txtUsuario";
-        txtUsuario.PlaceholderText = "Digite o seu usuário";
-        txtUsuario.Size = new Size(250, 27);
-        txtUsuario.TabIndex = 0;
-        // 
-        // lblSenha
-        // 
-        lblSenha.Anchor = AnchorStyles.Top;
-        lblSenha.AutoSize = true;
-        lblSenha.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        lblSenha.Location = new Point(230, 170);
-        lblSenha.Name = "lblSenha";
-        lblSenha.Size = new Size(52, 20);
-        lblSenha.TabIndex = 3;
-        lblSenha.Text = "Senha:";
-        // 
-        // txtSenha
-        // 
-        txtSenha.Anchor = AnchorStyles.Top;
-        txtSenha.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        txtSenha.Location = new Point(320, 166);
-        txtSenha.MaxLength = 50;
-        txtSenha.Name = "txtSenha";
-        txtSenha.PlaceholderText = "Digite a sua senha";
-        txtSenha.Size = new Size(250, 27);
-        txtSenha.TabIndex = 1;
-        txtSenha.UseSystemPasswordChar = true;
-        // 
         // btnEntrar
         // 
         btnEntrar.Anchor = AnchorStyles.Top;
         btnEntrar.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-        btnEntrar.Location = new Point(271, 220);
+        btnEntrar.Location = new Point(409, 284);
         btnEntrar.Name = "btnEntrar";
-        btnEntrar.Size = new Size(120, 40);
+        btnEntrar.Size = new Size(262, 49);
         btnEntrar.TabIndex = 2;
         btnEntrar.Text = "Entrar";
         btnEntrar.UseVisualStyleBackColor = true;
         btnEntrar.Click += btnEntrar_Click;
         // 
-        // btnLimpar
-        // 
-        btnLimpar.Anchor = AnchorStyles.Top;
-        btnLimpar.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-        btnLimpar.Location = new Point(450, 220);
-        btnLimpar.Name = "btnLimpar";
-        btnLimpar.Size = new Size(120, 40);
-        btnLimpar.TabIndex = 5;
-        btnLimpar.Text = "Limpar";
-        btnLimpar.UseVisualStyleBackColor = true;
-        btnLimpar.Click += btnLimpar_Click;
-        // 
         // pictureBox1
         // 
         pictureBox1.BackColor = Color.Transparent;
         pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-        pictureBox1.Location = new Point(149, -10);
+        pictureBox1.Location = new Point(22, 10);
         pictureBox1.Name = "pictureBox1";
-        pictureBox1.Size = new Size(116, 127);
+        pictureBox1.Size = new Size(321, 208);
         pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
         pictureBox1.TabIndex = 6;
         pictureBox1.TabStop = false;
+        // 
+        // label1
+        // 
+        label1.Anchor = AnchorStyles.Top;
+        label1.AutoSize = true;
+        label1.Font = new Font("Segoe UI", 15F);
+        label1.Location = new Point(360, 140);
+        label1.Name = "label1";
+        label1.Size = new Size(370, 84);
+        label1.TabIndex = 7;
+        label1.Text = "Sistema de votação escolar desenvolvido\npara realizar eleições de forma simples,\norganizada e segura.";
+        label1.TextAlign = ContentAlignment.TopCenter;
         // 
         // TelaLogin
         // 
         AcceptButton = btnEntrar;
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        CancelButton = btnLimpar;
-        ClientSize = new Size(800, 450);
+        ClientSize = new Size(1122, 565);
+        Controls.Add(label1);
         Controls.Add(pictureBox1);
-        Controls.Add(btnLimpar);
         Controls.Add(btnEntrar);
-        Controls.Add(txtSenha);
-        Controls.Add(lblSenha);
-        Controls.Add(txtUsuario);
-        Controls.Add(lblUsuario);
         Controls.Add(lblTitulo);
         Icon = (Icon)resources.GetObject("$this.Icon");
         Name = "TelaLogin";
@@ -159,11 +105,7 @@ partial class TelaLogin
     #endregion
 
     private Label lblTitulo;
-    private Label lblUsuario;
-    private TextBox txtUsuario;
-    private Label lblSenha;
-    private TextBox txtSenha;
     private Button btnEntrar;
-    private Button btnLimpar;
     private PictureBox pictureBox1;
+    private Label label1;
 }
