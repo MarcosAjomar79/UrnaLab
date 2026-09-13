@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="UrnaLab.Tablet.CadastroAlunoPage"
+    BackgroundColor="#F5F7FA"
+    Title="Novo Aluno">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="24"
+            Spacing="18"
+            MaximumWidthRequest="700"
+            HorizontalOptions="Center">
+
+            <Label
+                Text="Cadastrar Aluno"
+                FontSize="28"
+                FontAttributes="Bold"
+                TextColor="#0B1F5C" />
+
+            <Label
+                Text="Preencha os campos abaixo para cadastrar um novo aluno."
+                FontSize="15"
+                TextColor="#667085" />
+
+            <Label
+                Text="Nome do Aluno"
+                FontAttributes="Bold" />
+
+            <Entry
+                x:Name="txtNome"
+                Placeholder="Digite o nome do aluno"
+                FontSize="17" />
+
+            <Label
+                Text="RA / Matricula"
+                FontAttributes="Bold" />
+
+            <Entry
+                x:Name="txtRa"
+                Placeholder="Digite o RA do aluno"
+                FontSize="17" />
+
+            <Label
+                Text="Turma"
+                FontAttributes="Bold" />
+
+            <Entry
+                x:Name="txtTurma"
+                Placeholder="Ex.: 3 ADS"
+                FontSize="17" />
+
+            <Label
+                Text="Status"
+                FontAttributes="Bold" />
+
+            <Picker
+                x:Name="pickerStatus"
+                Title="Selecione o status" />
+
+            <Grid
+                ColumnDefinitions="*,*"
+                ColumnSpacing="12"
+                Margin="0,20,0,0">
+
+                <Button
+                    Grid.Column="0"
+                    Text="CANCELAR"
+                    Clicked="btnCancelar_Click"
+                    HeightRequest="54"
+                    BackgroundColor="#E5E7EB"
+                    TextColor="#202631"
+                    CornerRadius="10" />
+
+                <Button
+                    Grid.Column="1"
+                    Text="SALVAR"
+                    Clicked="btnSalvar_Click"
+                    HeightRequest="54"
+                    BackgroundColor="#0B1F5C"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="10" />
+
+            </Grid>
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

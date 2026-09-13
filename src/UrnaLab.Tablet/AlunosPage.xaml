@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="UrnaLab.Tablet.AlunosPage"
+    BackgroundColor="#F5F7FA"
+    Title="Alunos">
+
+    <Grid
+        Padding="20"
+        RowDefinitions="Auto,Auto,*"
+        RowSpacing="16">
+
+        <!-- Cabeçalho -->
+        <Grid
+            Grid.Row="0"
+            ColumnDefinitions="*,Auto"
+            ColumnSpacing="12">
+
+            <VerticalStackLayout Spacing="2">
+
+                <Label
+                    Text="Alunos"
+                    FontSize="28"
+                    FontAttributes="Bold"
+                    TextColor="#0B1F5C"/>
+
+                <Label
+                    Text="Gerencie os alunos cadastrados."
+                    FontSize="15"
+                    TextColor="#667085"/>
+
+            </VerticalStackLayout>
+
+            <Button
+                Grid.Column="1"
+                x:Name="btnNovoAluno"
+                Text="+ NOVO"
+                Clicked="btnNovoAluno_Click"
+                FontAttributes="Bold"
+                BackgroundColor="#0B1F5C"
+                TextColor="White"
+                CornerRadius="10"
+                Padding="18,10"/>
+
+        </Grid>
+
+        <!-- Pesquisa -->
+        <Border
+            Grid.Row="1"
+            BackgroundColor="White"
+            Stroke="#D9E0E8"
+            StrokeThickness="1"
+            Padding="4">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10"/>
+            </Border.StrokeShape>
+
+            <Entry
+                x:Name="txtBuscarAluno"
+                Placeholder="Buscar por nome ou RA"
+                FontSize="16"
+                ClearButtonVisibility="WhileEditing"
+                TextChanged="txtBuscarAluno_TextChanged" />
+
+        </Border>
+
+        <!-- Lista -->
+        <Border
+            Grid.Row="2"
+            BackgroundColor="White"
+            Stroke="#D9E0E8"
+            StrokeThickness="1"
+            Padding="12">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="12"/>
+            </Border.StrokeShape>
+            <CollectionView
+    x:Name="listaAlunos">
+
+                <CollectionView.EmptyView>
+
+                    <VerticalStackLayout
+            Spacing="8"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+
+                        <Label
+                Text="Nenhum aluno cadastrado"
+                FontSize="18"
+                FontAttributes="Bold"
+                TextColor="#404756"
+                HorizontalTextAlignment="Center"/>
+
+                        <Label
+                Text="Toque em + NOVO para cadastrar."
+                FontSize="14"
+                TextColor="#7A8492"
+                HorizontalTextAlignment="Center"/>
+
+                    </VerticalStackLayout>
+
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <VerticalStackLayout Padding="10">
+
+                            <Label
+                    Text="{Binding Nome}"
+                    FontSize="18"
+                    FontAttributes="Bold"/>
+
+                            <Label
+                    Text="{Binding Ra}"
+                    FontSize="14"/>
+
+                        </VerticalStackLayout>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </Border>
+
+    </Grid>
+
+</ContentPage>

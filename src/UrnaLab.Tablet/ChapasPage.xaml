@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="UrnaLab.Tablet.ChapasPage"
+    BackgroundColor="#F5F7FA"
+    Title="Chapas">
+
+    <Grid
+        Padding="20"
+        RowDefinitions="Auto,Auto,*"
+        RowSpacing="16">
+
+        <Grid
+            Grid.Row="0"
+            ColumnDefinitions="*,Auto"
+            ColumnSpacing="12">
+
+            <VerticalStackLayout Spacing="2">
+
+                <Label
+                    Text="Chapas"
+                    FontSize="28"
+                    FontAttributes="Bold"
+                    TextColor="#0B1F5C"/>
+
+                <Label
+                    Text="Gerencie as chapas da eleição."
+                    FontSize="15"
+                    TextColor="#667085"/>
+
+            </VerticalStackLayout>
+
+            <Button
+                Grid.Column="1"
+                Text="+ NOVA"
+                Clicked="btnNovaChapa_Click"
+                BackgroundColor="#0B1F5C"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="10"
+                Padding="18,10"/>
+
+        </Grid>
+
+        <Border
+            Grid.Row="1"
+            BackgroundColor="White"
+            Stroke="#D9E0E8"
+            StrokeThickness="1"
+            Padding="4">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10"/>
+            </Border.StrokeShape>
+
+            <Entry
+                x:Name="txtBuscarChapa"
+                Placeholder="Buscar por nome ou número"
+                FontSize="16"
+                ClearButtonVisibility="WhileEditing"
+                TextChanged="txtBuscarChapa_TextChanged"/>
+
+        </Border>
+
+        <Border
+            Grid.Row="2"
+            BackgroundColor="White"
+            Stroke="#D9E0E8"
+            StrokeThickness="1"
+            Padding="12">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="12"/>
+            </Border.StrokeShape>
+
+            <CollectionView
+                x:Name="listaChapas"
+                SelectionMode="None">
+
+                <CollectionView.ItemTemplate>
+
+                    <DataTemplate>
+
+                        <Border
+                            Margin="0,0,0,10"
+                            Padding="14"
+                            BackgroundColor="#F8FAFC"
+                            Stroke="#D9E0E8"
+                            StrokeThickness="1">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+
+                            <Grid
+                                ColumnDefinitions="Auto,*,Auto"
+                                ColumnSpacing="14">
+
+                                <Label
+                                    Grid.Column="0"
+                                    Text="{Binding Numero}"
+                                    FontSize="26"
+                                    FontAttributes="Bold"
+                                    TextColor="#0B1F5C"
+                                    VerticalOptions="Center"/>
+
+                                <Label
+                                    Grid.Column="1"
+                                    Text="{Binding Nome}"
+                                    FontSize="17"
+                                    FontAttributes="Bold"
+                                    TextColor="#202631"
+                                    VerticalOptions="Center"/>
+
+                                <Label
+                                    Grid.Column="2"
+                                    Text="{Binding Status}"
+                                    FontAttributes="Bold"
+                                    TextColor="#0B1F5C"
+                                    VerticalOptions="Center"/>
+
+                            </Grid>
+
+                        </Border>
+
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+
+                    <VerticalStackLayout
+                        Spacing="8"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center">
+
+                        <Label
+                            Text="Nenhuma chapa cadastrada"
+                            FontSize="18"
+                            FontAttributes="Bold"/>
+
+                        <Label
+                            Text="Toque em + NOVA para cadastrar."
+                            FontSize="14"
+                            TextColor="#7A8492"/>
+
+                    </VerticalStackLayout>
+
+                </CollectionView.EmptyView>
+
+            </CollectionView>
+
+        </Border>
+
+    </Grid>
+
+</ContentPage>

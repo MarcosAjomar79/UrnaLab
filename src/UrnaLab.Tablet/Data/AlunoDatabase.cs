@@ -1,0 +1,36 @@
+﻿using SQLite;
+using UrnaLab.Tablet.Models;
+
+namespace UrnaLab.Tablet.Data
+{
+    public class AlunoDatabase
+    {
+        private SQLiteAsyncConnection? database;
+
+        private async Task InicializarAsync()
+        {
+            if (database is not null)
+                return;
+
+            string caminhoBanco = Path.Combine(FileSystem.AppDataDirectory, "urnalab.db");
+            database = new SQLiteAsyncConnection(caminhoBanco);
+
+            await database.CreateTableAsync<Aluno>();
+        }
+
+        public async Task<List<Aluno>> ObterAlunosAsync()
+        {
+            await InicializarAsync();
+            return await database!
+                .Table<Aluno>()
+                .OrderBy(a => a.Nome)
+                .ToListAsync();
+        }
+
+        public async Task<int> CadastrarAsync(Aluno aluno)
+        {
+            await InicializarAsync();
+            return await database!.InsertAsync(aluno);
+        }
+    }
+}
