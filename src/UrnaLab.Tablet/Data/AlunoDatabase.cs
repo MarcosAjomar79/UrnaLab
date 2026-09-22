@@ -27,6 +27,26 @@ namespace UrnaLab.Tablet.Data
                 .ToListAsync();
         }
 
+        public async Task<Aluno?> ObterPorIdAsync(int id)
+        {
+            await InicializarAsync();
+
+            return await database!
+                .Table<Aluno>()
+                .Where(a => a.Id == id)
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task<Chapa?> ObterPorNumeroAsync(int numero)
+        {
+            await InicializarAsync();
+
+            return await database!
+                .Table<Chapa>()
+                .Where(c => c.Numero == numero)
+                .FirstOrDefaultAsync();
+        }
+
         public async Task<int> CadastrarAsync(Aluno aluno)
         {
             await InicializarAsync();

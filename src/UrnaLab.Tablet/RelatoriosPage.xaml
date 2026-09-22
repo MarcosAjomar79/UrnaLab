@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="UrnaLab.Tablet.RelatoriosPage"
+    BackgroundColor="#F5F7FA"
+    Title="Relatórios">
+
+    <Grid
+        Padding="20"
+        RowDefinitions="Auto,Auto,Auto,*"
+        RowSpacing="16">
+
+        <VerticalStackLayout
+            Grid.Row="0"
+            Spacing="4">
+
+            <Label
+                Text="Relatórios"
+                FontSize="28"
+                FontAttributes="Bold"
+                TextColor="#0B1F5C"/>
+
+            <Label
+                x:Name="lblTotalVotos"
+                Text="Total de votos: 0"
+                FontSize="15"
+                TextColor="#667085"/>
+
+        </VerticalStackLayout>
+
+        <Grid
+            Grid.Row="1"
+            ColumnDefinitions="*,*"
+            ColumnSpacing="10">
+
+            <Button
+                Grid.Column="0"
+                Text="VOTOS"
+                Clicked="btnVotos_Click"
+                BackgroundColor="#0B1F5C"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="10"/>
+
+            <Button
+                Grid.Column="1"
+                Text="RESUMO POR CHAPA"
+                Clicked="btnResumo_Click"
+                BackgroundColor="#E5E7EB"
+                TextColor="#202631"
+                FontAttributes="Bold"
+                CornerRadius="10"/>
+
+        </Grid>
+
+        <Grid 
+            Grid.Row="2"
+            ColumnDefinitions="*,*"
+            ColumnSpacing="10">
+
+            <Button
+                Grid.Column="0"
+                Text="EXPORTAR CSV"
+                Clicked="btnExportar_Click"
+                HeightRequest="48"
+                BackgroundColor="#0B1F5C"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="10"/>
+
+            <Button
+                Grid.Column="1"
+                Text="IMPRIMIR / PDF"
+                Clicked="btnImprimir_Click"
+                HeightRequest="48"
+                BackgroundColor="#202631"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="10"/>
+
+        </Grid>
+
+        <!-- CONTEÚDO -->
+        
+        <Grid
+            Grid.Row="3">
+
+            <!-- RELATÓRIO NOMINAL -->
+
+            <CollectionView
+                x:Name="listaVotos"
+                IsVisible="True">
+
+                <CollectionView.ItemTemplate>
+
+                    <DataTemplate>
+
+                        <Border
+                            Padding="14"
+                            Margin="0,0,0,10"
+                            BackgroundColor="White"
+                            Stroke="#D9E0E8"
+                            StrokeThickness="1">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+
+                            <VerticalStackLayout Spacing="4">
+
+                                <Label
+                                    Text="{Binding AlunoNome}"
+                                    FontSize="17"
+                                    FontAttributes="Bold"
+                                    TextColor="#202631"/>
+
+                                <Label
+                                    Text="{Binding Ra, StringFormat='RA: {0}'}"
+                                    TextColor="#667085"/>
+
+                                <Label
+                                    Text="{Binding Turma, StringFormat='Turma: {0}'}"
+                                    TextColor="#667085"/>
+
+                                <Label
+                                    Text="{Binding NumeroChapa, StringFormat='Chapa: {0}'}"
+                                    FontAttributes="Bold"
+                                    TextColor="#0B1F5C"/>
+
+                                <Label
+                                    Text="{Binding ChapaNome}"
+                                    TextColor="#202631"/>
+
+                                <Label
+                                    Text="{Binding DataHora, StringFormat='Data: {0:dd/MM/yyyy HH:mm:ss}'}"
+                                    FontSize="13"
+                                    TextColor="#667085"/>
+
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+            <!-- RESUMO -->
+
+            <CollectionView
+                x:Name="listaResumo"
+                IsVisible="False">
+
+                <CollectionView.ItemTemplate>
+
+                    <DataTemplate>
+
+                        <Border
+                            Padding="16"
+                            Margin="0,0,0,10"
+                            BackgroundColor="White"
+                            Stroke="#D9E0E8"
+                            StrokeThickness="1">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+
+                            <Grid
+                                ColumnDefinitions="Auto,*,Auto"
+                                ColumnSpacing="14">
+
+                                <Label
+                                    Grid.Column="0"
+                                    Text="{Binding Numero}"
+                                    FontSize="24"
+                                    FontAttributes="Bold"
+                                    TextColor="#0B1F5C"
+                                    VerticalOptions="Center"/>
+
+                                <Label
+                                    Grid.Column="1"
+                                    Text="{Binding Nome}"
+                                    FontSize="17"
+                                    FontAttributes="Bold"
+                                    VerticalOptions="Center"/>
+
+                                <VerticalStackLayout
+                                    Grid.Column="2"
+                                    Spacing="0"
+                                    HorizontalOptions="End">
+
+                                    <Label
+                                        Text="{Binding TotalVotos}"
+                                        FontSize="24"
+                                        FontAttributes="Bold"
+                                        HorizontalTextAlignment="End"
+                                        TextColor="#0B1F5C"/>
+
+                                    <Label
+                                        Text="votos"
+                                        FontSize="12"
+                                        TextColor="#667085"/>
+
+                                </VerticalStackLayout>
+
+                            </Grid>
+
+                        </Border>
+
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

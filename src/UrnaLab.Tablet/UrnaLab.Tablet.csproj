@@ -84,7 +84,16 @@
 		<MauiXaml Update="ChapasPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
+		<MauiXaml Update="LiberarVotacaoPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 	  <MauiXaml Update="PainelPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="RelatoriosPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="VotacaoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

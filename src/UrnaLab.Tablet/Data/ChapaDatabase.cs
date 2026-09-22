@@ -32,6 +32,16 @@ public class ChapaDatabase
             .ToListAsync();
     }
 
+    public async Task<Chapa?> ObterPorNumeroAsync(int numero)
+    {
+        await InicializarAsync();
+
+        return await database!
+            .Table<Chapa>()
+            .Where(c => c.Numero == numero)
+            .FirstOrDefaultAsync();
+    }
+
     public async Task<int> CadastrarAsync(Chapa chapa)
     {
         await InicializarAsync();

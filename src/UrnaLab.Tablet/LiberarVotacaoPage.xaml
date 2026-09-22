@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" ?>
+    
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="UrnaLab.Tablet.LiberarVotacaoPage"
+    BackgroundColor="#F5F7FA"
+    Title="LiberarVotacao">
+
+    <Grid
+        Padding="20"
+        RowDefinitions="Auto,Auto,*,Auto"
+        RowSpacing="16">
+
+        <VerticalStackLayout
+            Grid.Row="0"
+            Spacing="4">
+
+            <Label
+                Text="Liberar Votação"
+                FontSize="28"
+                FontAttributes="Bold"
+                TextColor="#0B1F5C"/>
+
+            <Label
+                Text="Selecione o aluno que realizará a votação."
+                FontSize="15"
+                TextColor="#667085"/>
+
+        </VerticalStackLayout>
+
+        <Border
+            Grid.Row="1"
+            BackgroundColor="White"
+            Stroke="#D9E0E8"
+            StrokeThickness="1"
+            Padding="4">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10"/>
+            </Border.StrokeShape>
+
+            <Entry
+                x:Name="txtBuscarAluno"
+                Placeholder="Buscar por nome ou RA"
+                FontSize="16"
+                ClearButtonVisibility="WhileEditing"
+                TextChanged="txtBuscarAluno_TextChanged"/>
+        </Border>
+
+        <!-- LISTA -->
+        <Border
+            Grid.Row="2"
+            BackgroundColor="White"
+            Stroke="#D9E0E8"
+            StrokeThickness="1"
+            Padding="12">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="12"/>
+            </Border.StrokeShape>
+
+            <CollectionView
+                x:Name="listaAlunos"
+                SelectionMode="Single"
+                SelectionChanged="listaAlunos_SelectionChanged">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Border
+                            Margin="0,0,0,10"
+                            Padding="14"
+                            BackgroundColor="#F8FAFC"
+                            Stroke="#D9E0E8"
+                            StrokeThickness="1">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+
+                            <Grid
+                                ColumnDefinitions="*,Auto"
+                                RowDefinitions="Auto,Auto,Auto"
+                                ColumnSpacing="12">
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Text="{Binding Nome}"
+                                    FontSize="18"
+                                    FontAttributes="Bold"
+                                    TextColor="#202631"/>
+
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Text="{Binding Ra, StringFormat='RA: {0}'}"
+                                    FontSize="14"
+                                    TextColor="#667085"/>
+
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    Text="{Binding Turma, StringFormat='Turma: {0}'}"
+                                    FontSize="14"
+                                    TextColor="#667085"/>
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Text="{Binding Status}"
+                                    FontAttributes="Bold"
+                                    TextColor="#0B1F5C"/>
+
+                            </Grid>
+
+                        </Border>
+
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Spacing="6">
+
+                        <Label
+                            Text="Nenhum aluno encontrado"
+                            FontSize="18"
+                            FontAttributes="Bold"/>
+
+                        <Label
+                            Text="Cadastre ou pesquise outro aluno."
+                            TextColor="#667085"/>
+
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </Border>
+        <!-- ALUNO SELECIONADO + BOTÃO -->
+        <Grid
+            Grid.Row="3"
+            ColumnDefinitions="*,Auto"
+            ColumnSpacing="16">
+
+            <VerticalStackLayout
+                Grid.Column="0"
+                VerticalOptions="Center"
+                Spacing="2">
+
+                <Label
+                    Text="Aluno selecionado"
+                    FontSize="13"
+                    TextColor="#667085"/>
+
+                <Label
+                    x:Name="lblAlunoSelecionado"
+                    Text="Nenhum aluno selecionado"
+                    FontSize="17"
+                    FontAttributes="Bold"
+                    TextColor="#202631"/>
+            </VerticalStackLayout>
+
+            <Button
+                x:Name="btnLiberar"
+                Grid.Column="1"
+                Text="LIBERAR VOTAÇÃO"
+                Clicked="btnLiberar_Click"
+                IsEnabled="False"
+                HeightRequest="56"
+                Padding="22,0"
+                BackgroundColor="#0B1F5C"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="10"/>
+
+        </Grid>
+    </Grid>
+</ContentPage>

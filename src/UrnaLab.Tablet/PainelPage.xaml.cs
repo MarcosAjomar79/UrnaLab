@@ -16,4 +16,14 @@ public partial class PainelPage : ContentPage
     {
         await Shell.Current.GoToAsync(nameof(ChapasPage));
     }
+
+    private async void btnIniciarVotacao_Click(object? sender,EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(LiberarVotacaoPage));
+    }
+
+    private async void btnRelatorios_Click(object? sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(RelatoriosPage));
+    }
 }
