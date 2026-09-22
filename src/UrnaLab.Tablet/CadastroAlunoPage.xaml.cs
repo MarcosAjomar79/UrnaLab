@@ -3,18 +3,40 @@ using UrnaLab.Tablet.Data;
 
 namespace UrnaLab.Tablet;
 
-public partial class CadastroAlunoPage : ContentPage
+
+public partial class CadastroAlunoPage : ContentPage, IQueryAttributable
 {
+
     private readonly AlunoDatabase alunoDatabase = new();
+    private int? alunoIdEdicao;
+    private Aluno? alunoEmEdicao;
     public CadastroAlunoPage()
     {
         InitializeComponent();
 
-        pickerStatus.SelectedIndex = 0; // Define o índice selecionado como 0 (Ativo)
-
         pickerStatus.Items.Add("Ativo");
         pickerStatus.Items.Add("Inativo");
+        pickerStatus.SelectedIndex = 0; // Define o índice selecionado como 0 (Ativo)
+
     }
+
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        if (query.TryGetValue("alunoId", out object? valor))
+        {
+            if (int.TryParse(valor?.ToString(), out int id))
+            {
+                alunoIdEdicao = id;
+            }
+        }
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        await CarregarAlunoParaEdicao();
+    }
+
 
     private async void btnSalvar_Click(object? sender, EventArgs e)
     {
@@ -35,24 +57,41 @@ public partial class CadastroAlunoPage : ContentPage
             return;
         }
 
-        var aluno = new Aluno
-        {
-            Nome = nome,
-            Ra = ra,
-            Turma = turma,
-            Status = status
-        };
-
         try
         {
-            await alunoDatabase.CadastrarAsync(aluno);
+            if (alunoEmEdicao is null)
+            {
+                var aluno = new Aluno
+                {
+                    Nome = nome,
+                    Ra = ra,
+                    Turma = turma,
+                    Status = status
+                };
 
-            await DisplayAlert(
-                "Cadastro realizado",
-                "Aluno cadastrado com sucesso.",
-                "OK");
+                await alunoDatabase.CadastrarAsync(aluno);
 
-            await Shell.Current.GoToAsync("..");
+                await DisplayAlert(
+                    "Cadastro realizado",
+                    "Aluno cadastrado com sucesso.",
+                    "OK");
+
+                
+            }
+
+            else
+            {
+                alunoEmEdicao.Nome = nome;
+                alunoEmEdicao.Ra = ra;
+                alunoEmEdicao.Turma = turma;
+                alunoEmEdicao.Status = status;
+                await alunoDatabase.AtualizarAsync(alunoEmEdicao);
+                await DisplayAlert(
+                    "Edição realizada",
+                    "Aluno atualizado com sucesso.",
+                    "OK");
+                await Shell.Current.GoToAsync("..");
+            }
         }
 
         catch (SQLite.SQLiteException)
@@ -61,6 +100,24 @@ public partial class CadastroAlunoPage : ContentPage
                 "Erro de cadastro",
                 "Ocorreu um erro ao cadastrar o aluno. Verifique se o RA já está cadastrado.",
                 "OK");
+        }
+
+    }
+
+    public async Task CarregarAlunoParaEdicao()
+    {
+        if (alunoIdEdicao.HasValue)
+        {
+            alunoEmEdicao = await alunoDatabase.ObterPorIdAsync(alunoIdEdicao.Value);
+            if (alunoEmEdicao != null)
+            {
+                txtNome.Text = alunoEmEdicao.Nome;
+                txtRa.Text = alunoEmEdicao.Ra;
+                txtTurma.Text = alunoEmEdicao.Turma;
+                pickerStatus.SelectedItem = alunoEmEdicao.Status;
+
+                Title = "Editar Aluno";
+            }
         }
     }
 

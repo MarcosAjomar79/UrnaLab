@@ -15,7 +15,7 @@
         <!-- Cabeçalho -->
         <Grid
             Grid.Row="0"
-            ColumnDefinitions="*,Auto"
+            ColumnDefinitions="*,Auto,Auto,Auto"
             ColumnSpacing="12">
 
             <VerticalStackLayout Spacing="2">
@@ -43,6 +43,29 @@
                 TextColor="White"
                 CornerRadius="10"
                 Padding="18,10"/>
+
+            <Button
+                Grid.Column="2"
+                x:Name="btnEditarAluno"
+                Text="EDITAR"
+                Clicked="btnEditarAluno_Click"
+                FontAttributes="Bold"
+                BackgroundColor="Gray"
+                TextColor="White"
+                CornerRadius="10"
+                Padding="18,10"/>
+
+            <Button
+                Grid.Column="3"
+                x:Name="btnExcluirAluno"
+                Text="EXCLUIR"
+                Clicked="btnExcluirAluno_Click"
+                FontAttributes="Bold"
+                BackgroundColor="Red"
+                TextColor="White"
+                CornerRadius="10"
+                Padding="18,10"/>
+
 
         </Grid>
 
@@ -79,27 +102,29 @@
                 <RoundRectangle CornerRadius="12"/>
             </Border.StrokeShape>
             <CollectionView
-    x:Name="listaAlunos">
+                x:Name="listaAlunos"
+                SelectionMode="Single"
+                SelectionChanged="listaAlunos_SelectionChanged">
 
                 <CollectionView.EmptyView>
 
                     <VerticalStackLayout
-            Spacing="8"
-            VerticalOptions="Center"
-            HorizontalOptions="Center">
+                        Spacing="8"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center">
 
                         <Label
-                Text="Nenhum aluno cadastrado"
-                FontSize="18"
-                FontAttributes="Bold"
-                TextColor="#404756"
-                HorizontalTextAlignment="Center"/>
+                            Text="Nenhum aluno cadastrado"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="#404756"
+                            HorizontalTextAlignment="Center"/>
 
                         <Label
-                Text="Toque em + NOVO para cadastrar."
-                FontSize="14"
-                TextColor="#7A8492"
-                HorizontalTextAlignment="Center"/>
+                            Text="Toque em + NOVO para cadastrar."
+                            FontSize="14"
+                            TextColor="#7A8492"
+                            HorizontalTextAlignment="Center"/>
 
                     </VerticalStackLayout>
 
@@ -111,13 +136,13 @@
                         <VerticalStackLayout Padding="10">
 
                             <Label
-                    Text="{Binding Nome}"
-                    FontSize="18"
-                    FontAttributes="Bold"/>
+                                Text="{Binding Nome}"
+                                FontSize="18"
+                                FontAttributes="Bold"/>
 
                             <Label
-                    Text="{Binding Ra}"
-                    FontSize="14"/>
+                                Text="{Binding Ra}"
+                                FontSize="14"/>
 
                         </VerticalStackLayout>
 

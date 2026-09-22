@@ -52,5 +52,17 @@ namespace UrnaLab.Tablet.Data
             await InicializarAsync();
             return await database!.InsertAsync(aluno);
         }
+
+        public async Task<int> AtualizarAsync(Aluno aluno)
+        {
+            await InicializarAsync();
+            return await database!.UpdateAsync(aluno);
+        }
+
+        public async Task<int> ExcluirAsync(Aluno aluno)
+        {
+            await InicializarAsync();
+            return await database!.DeleteAsync(aluno);
+        }
     }
 }
