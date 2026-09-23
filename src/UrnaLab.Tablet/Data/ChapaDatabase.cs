@@ -42,10 +42,32 @@ public class ChapaDatabase
             .FirstOrDefaultAsync();
     }
 
+    public async Task<Chapa?> ObterPorIdAsync(int id)
+    {
+        await InicializarAsync();
+
+        return await database!
+            .Table<Chapa>()
+            .Where(a => a.Id == id)
+            .FirstOrDefaultAsync();
+    }
+
     public async Task<int> CadastrarAsync(Chapa chapa)
     {
         await InicializarAsync();
 
         return await database!.InsertAsync(chapa);
+    }
+
+    public async Task<int> AtualizarAsync(Chapa chapa)
+    {
+        await InicializarAsync();
+        return await database!.UpdateAsync(chapa);
+    }
+
+    public async Task<int> ExcluirAsync(Chapa chapa)
+    {
+        await InicializarAsync();
+        return await database!.DeleteAsync(chapa);
     }
 }

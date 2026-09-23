@@ -14,7 +14,7 @@
 
         <Grid
             Grid.Row="0"
-            ColumnDefinitions="*,Auto"
+            ColumnDefinitions="*,Auto,Auto,Auto"
             ColumnSpacing="12">
 
             <VerticalStackLayout Spacing="2">
@@ -33,10 +33,33 @@
             </VerticalStackLayout>
 
             <Button
+                x:Name="btnNovaChapa"
                 Grid.Column="1"
                 Text="+ NOVA"
                 Clicked="btnNovaChapa_Click"
                 BackgroundColor="#0B1F5C"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="10"
+                Padding="18,10"/>
+
+            <Button
+                x:Name="btnEditarChapa"
+                Grid.Column="2"
+                Text="EDITAR"
+                Clicked="btnEditarChapa_Click"
+                BackgroundColor="Gray"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="10"
+                Padding="18,10"/>
+
+            <Button
+                x:Name="btnExcluirChapa"
+                Grid.Column="3"
+                Text="EXCLUIR"
+                Clicked="btnExcluirChapa_Click"
+                BackgroundColor="Red"
                 TextColor="White"
                 FontAttributes="Bold"
                 CornerRadius="10"
@@ -77,7 +100,8 @@
 
             <CollectionView
                 x:Name="listaChapas"
-                SelectionMode="None">
+                SelectionMode="Single"
+                SelectionChanged="listaChapas_SelectionChanged">
 
                 <CollectionView.ItemTemplate>
 
