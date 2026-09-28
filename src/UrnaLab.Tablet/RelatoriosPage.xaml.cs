@@ -72,7 +72,7 @@ public partial class RelatoriosPage : ContentPage
         {
             await DisplayAlertAsync(
                 "Erro",
-                $"Não foi possível abrir a impressão.\n{ex.Message}",
+                $"Não foi possível abrir a impressão.\n{ex.ToString()}",
                 "OK"
             );
         }
@@ -94,7 +94,7 @@ public partial class RelatoriosPage : ContentPage
         {
             await DisplayAlertAsync(
                 "Erro",
-                $"Não foi possível exportar o relatório.\n{ex.Message}",
+                $"Não foi possível exportar o relatório.\n{ex.ToString()}",
                 "OK"
             );
         }

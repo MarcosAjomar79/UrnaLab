@@ -23,29 +23,13 @@ namespace UrnaLab.Tablet.Data
             await database.CreateTableAsync<Voto>();
         }
 
-        public async Task RegistrarVotoAsync(int AlunoId, int ChapaId)
+        public async Task RegistrarVotoAsync(int? alunoId, int chapaId)
         {
             await InicializarAsync();
 
             await database!.RunInTransactionAsync(conexao =>
             {
-                var aluno = conexao.Find<Aluno>(AlunoId);
-
-                if (aluno is null)
-                {
-                    throw new InvalidOperationException("Aluno não encontrado.");
-                }
-                if (aluno.Status != "Ativo")
-                    throw new InvalidOperationException(
-                        "O aluno está inativo."
-                    );
-
-                if (aluno.JaVotou)
-                    throw new InvalidOperationException(
-                        "Este aluno já votou."
-                    );
-
-                var chapa = conexao.Find<Chapa>(ChapaId);
+                var chapa = conexao.Find<Chapa>(chapaId);
 
                 if (chapa is null)
                     throw new InvalidOperationException(
@@ -56,17 +40,42 @@ namespace UrnaLab.Tablet.Data
                     throw new InvalidOperationException(
                         "Esta chapa está inativa."
                     );
+                
+                Aluno? aluno = null;
+
+                if (alunoId.HasValue)
+                {
+                    aluno = conexao.Find<Aluno>(alunoId.Value);
+
+                    if (aluno is null)
+                        throw new InvalidOperationException(
+                            "Aluno não encontrado."
+                        );
+
+                    if (aluno.Status != "Ativo")
+                        throw new InvalidOperationException(
+                            "Este aluno não está ativo."
+                        );
+                    if (aluno.JaVotou)
+                    {
+                        throw new InvalidOperationException("Este aluno já votou.");
+                    }
+                }
 
                 var voto = new Voto
                 {
-                    AlunoId = aluno.Id,
-                    ChapaId = chapa.Id,
+                    AlunoId = alunoId,
+                    ChapaId = chapaId,
                     DataHora = DateTime.Now
                 };
 
                 conexao.Insert(voto);
-                aluno.JaVotou = true;
-                conexao.Update(aluno);
+
+                if (aluno is not null)
+                {
+                    aluno.JaVotou = true;
+                    conexao.Update(aluno);
+                }
             });
         }
 
@@ -88,13 +97,13 @@ namespace UrnaLab.Tablet.Data
                 SELECT
                     v.Id AS VotoId,
                     a.Ra AS Ra,
-                    a.Nome AS AlunoNome,
+                    COALESCE(a.Nome, 'Sem identificação'),
                     a.Turma AS Turma,
                     c.Numero AS NumeroChapa,
                     c.Nome AS ChapaNome,
                     v.DataHora AS DataHora
                 FROM Voto v
-                INNER JOIN Aluno a 
+                LEFT JOIN Aluno a 
                     ON v.AlunoId = a.Id
                 INNER JOIN Chapa c
                     ON v.ChapaId = c.Id

@@ -1,6 +1,6 @@
 using UrnaLab.Tablet.Data;
 using UrnaLab.Tablet.Models;
-
+using UrnaLab.Tablet.Services;
 namespace UrnaLab.Tablet;
 
 public partial class VotacaoPage : ContentPage, IQueryAttributable
@@ -8,8 +8,9 @@ public partial class VotacaoPage : ContentPage, IQueryAttributable
     private readonly AlunoDatabase alunoDatabase = new();
     private readonly ChapaDatabase chapaDatabase = new();
     private readonly VotoDatabase votoDatabase = new();
+    private readonly ConfiguracaoEleicaoDatabase configuracaoEleicaoDatabase = new();
 
-    private int alunoId;
+    private int? alunoId;
 
     private string numeroDigitado = "";
 
@@ -32,8 +33,15 @@ public partial class VotacaoPage : ContentPage, IQueryAttributable
     protected override async void OnAppearing()
     {
         base.OnAppearing();
+        var configuracao = await configuracaoEleicaoDatabase.ObterConfiguracaoAsync();
 
-        if (alunoId <= 0)
+        if (configuracao.ModoVotacao == "Anonima")
+        {
+            lblAluno.Text = "Votação sem identificação";
+            return;
+        }
+
+        if (!alunoId.HasValue)
         {
             await DisplayAlertAsync(
                 "Erro",
@@ -44,7 +52,7 @@ public partial class VotacaoPage : ContentPage, IQueryAttributable
             return;
         }
 
-        Aluno? aluno = await alunoDatabase.ObterPorIdAsync(alunoId);
+        Aluno? aluno = await alunoDatabase.ObterPorIdAsync(alunoId.Value);
 
         if (aluno is null)
         {
@@ -138,16 +146,16 @@ public partial class VotacaoPage : ContentPage, IQueryAttributable
         btnConfirmar.IsEnabled = false;
     }
 
-    private async void btnConfirmar_Click(
-        object? sender,
-        EventArgs e)
+    private async void btnConfirmar_Click(object? sender,EventArgs e)
     {
         if (chapaSelecionada is null)
             return;
 
         btnConfirmar.IsEnabled = false;
 
-        try
+        var configuracao = await configuracaoEleicaoDatabase.ObterConfiguracaoAsync();
+
+        if (configuracao.ModoVotacao == "Identificada")
         {
             await votoDatabase.RegistrarVotoAsync(alunoId, chapaSelecionada.Id);
 
@@ -158,21 +166,27 @@ public partial class VotacaoPage : ContentPage, IQueryAttributable
 
             await Shell.Current.GoToAsync("..");
         }
-        catch (InvalidOperationException ex)
+
+        if (configuracao.ModoVotacao == "Anonima")
         {
+            if (chapaSelecionada is null)
+                return;
+
+            btnConfirmar.IsEnabled = false;
+            await votoDatabase.RegistrarVotoAsync(alunoId, chapaSelecionada.Id);
+            
+
             await DisplayAlertAsync(
-                "Votação bloqueada",
-                ex.Message,
+                "Voto confirmado",
+                "Voto registrado com sucesso.",
                 "OK");
 
-            await Shell.Current.GoToAsync("..");
-        }
-        catch (SQLite.SQLiteException)
-        {
-            await DisplayAlertAsync(
-                "Erro",
-                "Não foi possível registrar o voto.",
-                "OK");
+            numeroDigitado = "";
+            chapaSelecionada = null;
+
+            lblNumero.Text = "---";
+            lblChapa.Text = "Digite o número da chapa";
+        
 
             btnConfirmar.IsEnabled = true;
         }

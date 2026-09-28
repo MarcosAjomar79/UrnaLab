@@ -8,7 +8,7 @@ public class Voto
     public int Id { get; set; }
 
     [Unique]
-    public int AlunoId { get; set; }
+    public int? AlunoId { get; set; }
 
     public int ChapaId { get; set; }
 

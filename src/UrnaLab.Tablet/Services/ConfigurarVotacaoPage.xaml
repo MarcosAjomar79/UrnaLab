@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="UrnaLab.Tablet.ConfigurarVotacaoPage"
+    BackgroundColor="#F5F7FA"
+    Title="Configurar Votação">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="24"
+            Spacing="18"
+            MaximumHeightRequest="700"
+            HorizontalOptions="Center">
+            
+            <Label
+                Text="Configurar Votação"
+                FontSize="28"
+                FontAttributes="Bold"
+                TextColor="#0B1F5C"/>
+            
+            <Label
+                Text="Escolha como votos serão registrados nesta eleição."
+                FontSize="15"
+                TextColor="#667085"/>
+
+            <Border
+                BackgroundColor="White"
+                Stroke="#D9E0E8"
+                StrokeThickness="1"
+                Padding="20">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="14"/>
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="12">
+                    <Label
+                        Text="COM IDENTIFICAÇÃO"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#0B1F5C"/>
+
+                    <Label
+                        Text="Utiliza os alunos cadastrados e controla quem já realizou a votação."
+                        FontSize="15"
+                        TextColor="#667085"/>
+
+                    <Button
+                        Text="USAR ESTE MODO"
+                        Clicked="btnIdentificada_Click"
+                        BackgroundColor="#0B1F5C"
+                        TextColor="White"
+                        FontSize="16"
+                        HeightRequest="40"
+                        CornerRadius="14"/>
+
+                    <Label
+                        Text="SEM IDENTIFICAÇÃO"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#0B1F5C"/>
+
+                    <Label
+                        Text="Não utiliza alunos cadastrados."
+                        FontSize="15"
+                        TextColor="#667085"/>
+
+                    <Button
+                        Text="USAR ESTE MODO"
+                        Clicked="btnAnonima_Click"
+                        BackgroundColor="#0B1F5C"
+                        TextColor="White"
+                        FontSize="16"
+                        HeightRequest="40"
+                        CornerRadius="14"/>
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

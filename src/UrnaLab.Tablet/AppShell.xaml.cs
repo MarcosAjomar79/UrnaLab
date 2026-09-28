@@ -14,8 +14,8 @@
             Routing.RegisterRoute(nameof(ChapasPage), typeof(ChapasPage));
             Routing.RegisterRoute(nameof(CadastroChapaPage), typeof(CadastroChapaPage));
 
-            Routing.RegisterRoute(nameof(LiberarVotacaoPage), typeof(LiberarVotacaoPage));
-
+            Routing.RegisterRoute(nameof(LiberarVotacaoPage), typeof(ConfigurarVotacaoPage));
+            Routing.RegisterRoute(nameof(ConfigurarVotacaoPage), typeof(ConfigurarVotacaoPage));
             Routing.RegisterRoute(nameof(VotacaoPage), typeof(VotacaoPage));
 
             Routing.RegisterRoute(nameof(RelatoriosPage), typeof(RelatoriosPage));
