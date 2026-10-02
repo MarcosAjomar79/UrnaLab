@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="UrnaLab.Tablet.MainPage"
-    BackgroundColor="#F5F7FA"
+    BackgroundColor="{AppThemeBinding Light=#F5F7FA, Dark=#121826}"
     Title="UrnaLab">
 
     <Grid 
@@ -16,18 +16,32 @@
             VerticalOptions="Center"
             MaximumWidthRequest="520">
 
+            <Image
+                x:Name="imgLogo"
+                Source="urnalab_logo.png"
+                HeightRequest="160"
+                Aspect="AspectFit" 
+                Opacity="0"
+                Scale="0.85"/>
+
             <Label
-                Text="URNALAB"
+                Text="URNALAB TABLET"
+                x:Name="lblTitulo"
                 FontSize="40"
                 FontAttributes="Bold"
-                TextColor="#0B1F5C"
-                HorizontalTextAlignment="Center"/>
+                TextColor="{AppThemeBinding Light=#0B1F5C, Dark=#E8EEFF}"
+                HorizontalTextAlignment="Center"
+                Opacity="0"
+                TranslationY = "20"/>
 
             <Label
                 Text="Simulação Eleitoral Escolar"
                 FontSize="18"
-                TextColor="#5A6472"
-                HorizontalTextAlignment="Center"/>
+                x:Name="lblSubTitulo"
+                TextColor="{AppThemeBinding Light=#5A6472, Dark=#AAB4C3}"
+                HorizontalTextAlignment="Center"
+                Opacity="0"
+                TranslationY = "20"/>
 
             <Button
                 x:Name="btnIniciar"
@@ -37,9 +51,11 @@
                 FontAttributes="Bold"
                 HeightRequest="60"
                 MinimumWidthRequest="260"
-                BackgroundColor="#0B1F5C"
+                BackgroundColor="{AppThemeBinding Light=#0B1F5C, Dark=#4169C1}"
                 TextColor="White"
-                CornerRadius="12"/>
+                CornerRadius="12"
+                Opacity="0"
+                TranslationY = "20"/>
 
         </VerticalStackLayout>
 

@@ -19,8 +19,7 @@ namespace UrnaLab.Tablet.Data
             );
 
             database = new SQLiteAsyncConnection(caminhoBanco);
-
-            await database.CreateTableAsync<Voto>();
+            await database.CreateTableAsync<ConfiguracaoEleicao>();
         }
 
         public async Task RegistrarVotoAsync(int? alunoId, int chapaId)
@@ -97,7 +96,7 @@ namespace UrnaLab.Tablet.Data
                 SELECT
                     v.Id AS VotoId,
                     a.Ra AS Ra,
-                    COALESCE(a.Nome, 'Sem identificação'),
+                    COALESCE(a.Nome, 'Sem identificação') AS AlunoNome,
                     a.Turma AS Turma,
                     c.Numero AS NumeroChapa,
                     c.Nome AS ChapaNome,

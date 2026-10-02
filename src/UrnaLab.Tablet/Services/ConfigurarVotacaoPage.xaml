@@ -3,30 +3,29 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="UrnaLab.Tablet.ConfigurarVotacaoPage"
-    BackgroundColor="#F5F7FA"
+    BackgroundColor="{AppThemeBinding Light=#F5F7FA, Dark=#121826}"
     Title="Configurar Votação">
 
     <ScrollView>
         <VerticalStackLayout
             Padding="24"
             Spacing="18"
-            MaximumHeightRequest="700"
             HorizontalOptions="Center">
             
             <Label
                 Text="Configurar Votação"
                 FontSize="28"
                 FontAttributes="Bold"
-                TextColor="#0B1F5C"/>
+                TextColor="{AppThemeBinding Light=#0B1F5C, Dark=#E8EEFF}"/>
             
             <Label
                 Text="Escolha como votos serão registrados nesta eleição."
                 FontSize="15"
                 TextColor="#667085"/>
 
-            <Border
-                BackgroundColor="White"
-                Stroke="#D9E0E8"
+            <Border 
+                BackgroundColor="{AppThemeBinding Light=White, Dark=#1B2433}"
+                Stroke="{AppThemeBinding Light=#D9E0E8, Dark=#344054}"
                 StrokeThickness="1"
                 Padding="20">
 
@@ -39,18 +38,18 @@
                         Text="COM IDENTIFICAÇÃO"
                         FontSize="20"
                         FontAttributes="Bold"
-                        TextColor="#0B1F5C"/>
+                        TextColor="{AppThemeBinding Light=#0B1F5C, Dark=#E8EEFF}"/>
 
                     <Label
                         Text="Utiliza os alunos cadastrados e controla quem já realizou a votação."
                         FontSize="15"
-                        TextColor="#667085"/>
+                        TextColor="{AppThemeBinding Light=#667085, Dark=#AAB4C3}"/>
 
                     <Button
                         Text="USAR ESTE MODO"
                         Clicked="btnIdentificada_Click"
                         BackgroundColor="#0B1F5C"
-                        TextColor="White"
+                        TextColor="{AppThemeBinding Light=white, Dark=#4169C1}"
                         FontSize="16"
                         HeightRequest="40"
                         CornerRadius="14"/>
@@ -59,21 +58,40 @@
                         Text="SEM IDENTIFICAÇÃO"
                         FontSize="20"
                         FontAttributes="Bold"
-                        TextColor="#0B1F5C"/>
+                        TextColor="{AppThemeBinding Light=#0B1F5C, Dark=#E8EEFF}"/>
 
                     <Label
                         Text="Não utiliza alunos cadastrados."
                         FontSize="15"
-                        TextColor="#667085"/>
+                        TextColor="{AppThemeBinding Light=#667085, Dark=#AAB4C3}"/>
 
                     <Button
                         Text="USAR ESTE MODO"
                         Clicked="btnAnonima_Click"
                         BackgroundColor="#0B1F5C"
-                        TextColor="White"
+                        TextColor="{AppThemeBinding Light=white, Dark=#4169C1}"
                         FontSize="16"
                         HeightRequest="40"
                         CornerRadius="14"/>
+
+                    <Label
+                        x:Name="lblStatusEleicao"
+                        Text="Status da eleição: ABERTA"
+                        TextColor="{AppThemeBinding Light=#0B1F5C, Dark=#E8EEFF}"/>
+
+                    <Button
+                        x:Name="btnEncerrarEleicao"
+                        Text="ENCERRAR ELEIÇÃO"
+                        Clicked="btnEncerrarEleicao_Click"
+                        TextColor="white"/>
+
+                    <Button
+                        x:Name="btnNovaEleicao"
+                        Text="NOVA ELEIÇÃO"
+                        Clicked="btnNovaEleicao_Click"
+                        TextColor="{AppThemeBinding Light=#027A48, Dark=#12B76A}"/>
+
+
                 </VerticalStackLayout>
             </Border>
         </VerticalStackLayout>

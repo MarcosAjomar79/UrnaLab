@@ -28,7 +28,7 @@
 		<MauiXamlInflator>SourceGen</MauiXamlInflator>
 
 		<!-- Display name -->
-		<ApplicationTitle>UrnaLab.Tablet</ApplicationTitle>
+		<ApplicationTitle>UrnaLab Tablet</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.urnalab.tablet</ApplicationId>
@@ -49,10 +49,10 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\urnalab_icon.png" BaseSize="128,128"/>
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\urnalab_splash.png" Color="#0B1F5C" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />

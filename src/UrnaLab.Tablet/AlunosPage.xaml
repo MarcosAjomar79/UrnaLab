@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="UrnaLab.Tablet.AlunosPage"
-    BackgroundColor="#F5F7FA"
+    BackgroundColor="{AppThemeBinding Light=#F5F7FA, Dark=#121826}"
     Title="Alunos">
 
     <Grid
@@ -24,7 +24,8 @@
                     Text="Alunos"
                     FontSize="28"
                     FontAttributes="Bold"
-                    TextColor="#0B1F5C"/>
+                    BackgroundColor="{AppThemeBinding Light=#F5F7FA, Dark=#121826}"
+                    TextColor="{AppThemeBinding Light=#0B1F5C, Dark=#E8EEFF}"/>
 
                 <Label
                     Text="Gerencie os alunos cadastrados."
@@ -72,8 +73,8 @@
         <!-- Pesquisa -->
         <Border
             Grid.Row="1"
-            BackgroundColor="White"
-            Stroke="#D9E0E8"
+            BackgroundColor="{AppThemeBinding Light=White, Dark=#1B2433}"
+            Stroke="{AppThemeBinding Light=#D9E0E8, Dark=#344054}"
             StrokeThickness="1"
             Padding="4">
 
@@ -85,6 +86,7 @@
                 x:Name="txtBuscarAluno"
                 Placeholder="Buscar por nome ou RA"
                 FontSize="16"
+                TextColor="{AppThemeBinding Light=#667085, Dark=#E8EEFF}"
                 ClearButtonVisibility="WhileEditing"
                 TextChanged="txtBuscarAluno_TextChanged" />
 
@@ -93,8 +95,8 @@
         <!-- Lista -->
         <Border
             Grid.Row="2"
-            BackgroundColor="White"
-            Stroke="#D9E0E8"
+            BackgroundColor="{AppThemeBinding Light=White, Dark=#1B2433}"
+            Stroke="{AppThemeBinding Light=#D9E0E8, Dark=#344054}"
             StrokeThickness="1"
             Padding="12">
 
@@ -117,13 +119,13 @@
                             Text="Nenhum aluno cadastrado"
                             FontSize="18"
                             FontAttributes="Bold"
-                            TextColor="#404756"
+                            TextColor="{AppThemeBinding Light=#404756, Dark=#E8EEFF}"
                             HorizontalTextAlignment="Center"/>
 
                         <Label
                             Text="Toque em + NOVO para cadastrar."
                             FontSize="14"
-                            TextColor="#7A8492"
+                            TextColor="{AppThemeBinding Light=#7A8492, Dark=#E8EEFF}"
                             HorizontalTextAlignment="Center"/>
 
                     </VerticalStackLayout>

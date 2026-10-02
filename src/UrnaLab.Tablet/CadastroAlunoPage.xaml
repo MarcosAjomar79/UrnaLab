@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="UrnaLab.Tablet.CadastroAlunoPage"
-    BackgroundColor="#F5F7FA"
+    BackgroundColor="{AppThemeBinding Light=#F5F7FA, Dark=#121826}"
     Title="Novo Aluno">
 
     <ScrollView>

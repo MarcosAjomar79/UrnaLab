@@ -3,7 +3,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="UrnaLab.Tablet.VotacaoPage"
-    BackgroundColor="#EEF1F5"
+    BackgroundColor="{AppThemeBinding Light=#F5F7FA, Dark=#121826}"
     Title="Votação">
 
     <ScrollView>
@@ -20,7 +20,8 @@
                 FontSize="28"
                 FontAttributes="Bold"
                 HorizontalTextAlignment="Center"
-                TextColor="#0B1F5C"/>
+                TextColor="{AppThemeBinding Light=#0B1F5C, Dark=#E8EEFF}"
+            />
 
             <Label
                 x:Name="lblAluno"
@@ -33,8 +34,8 @@
 
             <Border
                 Padding="20"
-                BackgroundColor="White"
-                Stroke="#CBD3DD"
+                BackgroundColor="{AppThemeBinding Light=White, Dark=#1B2433}"
+                Stroke="{AppThemeBinding Light=#D9E0E8, Dark=#344054}"
                 StrokeThickness="1">
 
                 <Border.StrokeShape>
@@ -48,7 +49,8 @@
                         FontSize="13"
                         FontAttributes="Bold"
                         HorizontalTextAlignment="Center"
-                        TextColor="#667085"/>
+                        TextColor="{AppThemeBinding Light=#667085, Dark=#E8EEFF}"
+                        />
 
                     <Label
                         x:Name="lblNumero"
@@ -56,7 +58,7 @@
                         FontSize="48"
                         FontAttributes="Bold"
                         HorizontalTextAlignment="Center"
-                        TextColor="#202631"/>
+                        TextColor="{AppThemeBinding Light=#202631, Dark=#E8EEFF}"/>
 
                     <Label
                         x:Name="lblChapa"
@@ -64,7 +66,8 @@
                         FontSize="19"
                         FontAttributes="Bold"
                         HorizontalTextAlignment="Center"
-                        TextColor="#0B1F5C"/>
+                        TextColor="{AppThemeBinding Light=#0B1F5C, Dark=#E8EEFF}"/>
+                    
 
 
                 </VerticalStackLayout>

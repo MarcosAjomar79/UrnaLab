@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="UrnaLab.Tablet.LiberarVotacaoPage"
-    BackgroundColor="#F5F7FA"
+    BackgroundColor="{AppThemeBinding Light=#F5F7FA, Dark=#121826}"
     Title="LiberarVotacao">
 
     <Grid
@@ -20,7 +20,8 @@
                 Text="Liberar Votação"
                 FontSize="28"
                 FontAttributes="Bold"
-                TextColor="#0B1F5C"/>
+                BackgroundColor="{AppThemeBinding Light=#F5F7FA, Dark=#121826}"
+                TextColor="{AppThemeBinding Light=#0B1F5C, Dark=#E8EEFF}"/>
 
             <Label
                 Text="Selecione o aluno que realizará a votação."
@@ -31,8 +32,8 @@
 
         <Border
             Grid.Row="1"
-            BackgroundColor="White"
-            Stroke="#D9E0E8"
+            BackgroundColor="{AppThemeBinding Light=White, Dark=#1B2433}"
+            Stroke="{AppThemeBinding Light=#D9E0E8, Dark=#344054}"
             StrokeThickness="1"
             Padding="4">
 
@@ -44,6 +45,7 @@
                 x:Name="txtBuscarAluno"
                 Placeholder="Buscar por nome ou RA"
                 FontSize="16"
+                TextColor="{AppThemeBinding Light=#667085, Dark=#E8EEFF}"
                 ClearButtonVisibility="WhileEditing"
                 TextChanged="txtBuscarAluno_TextChanged"/>
         </Border>
@@ -51,8 +53,8 @@
         <!-- LISTA -->
         <Border
             Grid.Row="2"
-            BackgroundColor="White"
-            Stroke="#D9E0E8"
+            BackgroundColor="{AppThemeBinding Light=White, Dark=#1B2433}"
+            Stroke="{AppThemeBinding Light=#D9E0E8, Dark=#344054}"
             StrokeThickness="1"
             Padding="12">
 
@@ -71,8 +73,8 @@
                         <Border
                             Margin="0,0,0,10"
                             Padding="14"
-                            BackgroundColor="#F8FAFC"
-                            Stroke="#D9E0E8"
+                            BackgroundColor="{AppThemeBinding Light=White, Dark=#1B2433}"
+                            Stroke="{AppThemeBinding Light=#D9E0E8, Dark=#344054}"
                             StrokeThickness="1">
 
                             <Border.StrokeShape>
@@ -90,28 +92,28 @@
                                     Text="{Binding Nome}"
                                     FontSize="18"
                                     FontAttributes="Bold"
-                                    TextColor="#202631"/>
+                                    TextColor="{AppThemeBinding Light=#202631, Dark=#E8EEFF}"/>
 
                                 <Label
                                     Grid.Row="1"
                                     Grid.Column="0"
                                     Text="{Binding Ra, StringFormat='RA: {0}'}"
                                     FontSize="14"
-                                    TextColor="#667085"/>
+                                    TextColor="{AppThemeBinding Light=#667085, Dark=#E8EEFF}"/>
 
                                 <Label
                                     Grid.Row="2"
                                     Grid.Column="0"
                                     Text="{Binding Turma, StringFormat='Turma: {0}'}"
                                     FontSize="14"
-                                    TextColor="#667085"/>
+                                    TextColor="{AppThemeBinding Light=#667085, Dark=#E8EEFF}"/>
 
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="1"
                                     Text="{Binding Status}"
                                     FontAttributes="Bold"
-                                    TextColor="#0B1F5C"/>
+                                    TextColor="{AppThemeBinding Light=#0B1F5C, Dark=#E8EEFF}"/>
 
                             </Grid>
 
@@ -133,7 +135,7 @@
 
                         <Label
                             Text="Cadastre ou pesquise outro aluno."
-                            TextColor="#667085"/>
+                            TextColor="{AppThemeBinding Light=#667085, Dark=#E8EEFF}"/>
 
                     </VerticalStackLayout>
                 </CollectionView.EmptyView>
@@ -153,14 +155,14 @@
                 <Label
                     Text="Aluno selecionado"
                     FontSize="13"
-                    TextColor="#667085"/>
+                    TextColor="{AppThemeBinding Light=#667085, Dark=#E8EEFF}"/>
 
                 <Label
                     x:Name="lblAlunoSelecionado"
                     Text="Nenhum aluno selecionado"
                     FontSize="17"
                     FontAttributes="Bold"
-                    TextColor="#202631"/>
+                    TextColor="{AppThemeBinding Light=#667085, Dark=#E8EEFF}"/>
             </VerticalStackLayout>
 
             <Button

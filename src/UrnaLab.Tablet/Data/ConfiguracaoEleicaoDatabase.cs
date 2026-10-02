@@ -1,12 +1,11 @@
 ﻿using SQLite;
 using UrnaLab.Tablet.Models;
-
+using UrnaLab.Tablet.Services;
 namespace UrnaLab.Tablet.Data
 {
     public class ConfiguracaoEleicaoDatabase
     {
         private SQLiteAsyncConnection? database;
-
         private async Task InicializarAsync()
         {
             if (database is not null)
@@ -16,6 +15,8 @@ namespace UrnaLab.Tablet.Data
             database = new SQLiteAsyncConnection(caminhoBanco);
 
             await database.CreateTableAsync<ConfiguracaoEleicao>();
+            await database.CreateTableAsync<Voto>();
+            await database.CreateTableAsync<Aluno>();
         }
 
         public async Task<ConfiguracaoEleicao> ObterConfiguracaoAsync()
@@ -28,7 +29,7 @@ namespace UrnaLab.Tablet.Data
                 configuracao = new ConfiguracaoEleicao
                 {
                     ModoVotacao = "Identificada",
-                    Status = "Aberta"
+                    
                 };
                 await database.InsertAsync(configuracao);
             }
@@ -38,6 +39,26 @@ namespace UrnaLab.Tablet.Data
         {
             await InicializarAsync();
             return await database!.UpdateAsync(configuracao);
+        }
+
+        public async Task ResetarEleicaoAsync()
+        {
+            await InicializarAsync();
+
+            await database!.RunInTransactionAsync(conexao =>
+            {
+                conexao.DeleteAll<Voto>();
+                conexao.Execute("UPDATE Aluno SET JaVotou = 0");
+                var configuracao = conexao.Table<ConfiguracaoEleicao>().FirstOrDefault();
+
+               
+                if (configuracao is not null)
+                {
+                    configuracao.Status = "Aberta";
+                    conexao.Update(configuracao);
+                }
+            });
+
         }
     }
 }
