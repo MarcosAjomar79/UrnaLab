@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Maui.Controls.Hosting;
+using Microsoft.Maui.Hosting;
+using Microsoft.Extensions.Logging;
+using Plugin.Maui.Audio;
 
 namespace UrnaLab.Tablet
 {
@@ -9,6 +12,7 @@ namespace UrnaLab.Tablet
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .AddAudio()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

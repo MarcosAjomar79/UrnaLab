@@ -49,7 +49,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\urnalab_icon.png" BaseSize="128,128"/>
+		<MauiIcon Include="Resources\AppIcon\urnalab_icon.png" BaseSize="128,128" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\urnalab_splash.png" Color="#0B1F5C" BaseSize="128,128" />
@@ -68,6 +68,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
+		<PackageReference Include="Plugin.Maui.Audio" Version="4.0.0" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.11.285" />
 	</ItemGroup>
 
